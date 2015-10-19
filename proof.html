@@ -6,7 +6,7 @@
 	<meta name="author" content="Adeeb Sheikh">
 
 	<title>
-		Proof of Existence
+		Proof of Adeeb
 	</title>
 
 	<link rel="stylesheet" type="text/css" href="/proof.css">
@@ -19,6 +19,8 @@
 
 	<script type="text/javascript">
 		$(document).ready(function(){
+
+			$("#username").focus();
 
 			//login the user
 			$("#loginButton").click(function(){
@@ -102,59 +104,22 @@
 
 			});
 
-			$(document).on('click', function(event) {
-
-  				if (!$(event.target).closest('#firstname').length) {
-
-    				if("".localeCompare($("#firstname").val()) == 0){
-
-						$("#firstname").attr("value", "First Name");
-						$("#firstname").css("color", "gray");
-
-					}
-
-				}
-
-				if (!$(event.target).closest('#lastname').length) {
-
-					if("".localeCompare($("#lastname").val()) == 0){
-
-						$("#lastname").attr("value", "Last Name");
-						$("#lastname").css("color", "gray");
-
-					}
-
-				}
-
-				if (!$(event.target).closest('#Susername').length) {
-
-					if("".localeCompare($("#Susername").val()) == 0){
-
-						$("#Susername").attr("value", "User Name");
-						$("#Susername").css("color", "gray");
-
-					}
-
-				}
-
-				if (!$(event.target).closest('#Spassword').length) {
-
-					if("".localeCompare($("#Spassword").val()) == 0){
-
-						$("#Spassword").attr("value", "Password");
-						$("#Spassword").css("color", "gray");
-
-					}
-
-				}
-
-			});
-
 			$("#firstname").focus(function(){
 
 				if("First Name".localeCompare($("#firstname").val()) == 0){
 					$("#firstname").attr("value", "");
 					$("#firstname").css("color", "black");
+				}
+
+			});
+
+			$("#firstname").focusout(function(){
+
+				if("".localeCompare($("#firstname").val()) == 0){
+
+					$("#firstname").attr("value", "First Name");
+					$("#firstname").css("color", "gray");
+
 				}
 
 			});
@@ -168,6 +133,17 @@
 				
 			});
 
+			$("#lastname").focusout(function(){
+
+				if("".localeCompare($("#lastname").val()) == 0){
+
+					$("#lastname").attr("value", "Last Name");
+					$("#lastname").css("color", "gray");
+
+				}
+
+			});
+
 			$("#Susername").focus(function(){
 
 				if("User Name".localeCompare($("#Susername").val()) == 0){
@@ -175,6 +151,17 @@
 					$("#Susername").css("color", "black");
 				}
 				
+			});
+
+			$("#Susername").focusout(function(){
+
+				if("".localeCompare($("#Susername").val()) == 0){
+
+					$("#Susername").attr("value", "User Name");
+					$("#Susername").css("color", "gray");
+
+				}
+
 			});
 
 			$("#Spassword").focus(function(){
@@ -186,92 +173,185 @@
 				
 			});
 
+			$("#Spassword").focusout(function(){
+
+				if("".localeCompare($("#Spassword").val()) == 0){
+
+					$("#Spassword").attr("value", "Password");
+					$("#Spassword").css("color", "gray");
+
+				}
+
+			});
+
 		});
 	</script>
 </head>
 
 <body>
 	<div class="wrapper">
-		<h1>
-			<a id="titlelink" href="/second.html">
-				proof of existence
-			</a>
+		<div class="inwrapper">
+			<h1>
+				<a id="titlelink" href="/proof.html" title="Go to main page">
+					proof of adeeb
+					<img src="batman.jpg" alt="batman.jpg" width=55 height=51 style="vertical-align:middle">
+				</a>
 
-			<div id="login">
-				Username&nbsp;<input id="username" type=text size="15"/>
-				<br>
+				<div id="login">
+					<table>
+						<tr>
+							<td>
+								Username
+							</td>
 
-				Password&nbsp;<input id="password" type=password size="15"/>
+							<td>
+								Password
+							</td>
+						</tr>
 
-				<button id="loginButton">Log In</button>
-			</div>
-		</h1>
+						<tr>
+							<td>
+								<input type="text" id="username"/>
+							</td>
 
-		<div id="main">
-			<div id="info">
-				<div id="titlelite">
-					Connect with existence.
+							<td>
+								<input type="password" id="password"/>
+							</td>
+
+							<td>
+								<button id="loginButton">
+									Log In
+								</button>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<div>
+									<input type="checkbox" id="persist_box" checked="1"/>
+									<label for="persist_box">
+										Keep me logged in
+									</label>
+								</div>
+							</td>
+							<td>
+								<a href="/recover/initiate?lwv=111">
+									Forgot your password?
+								</a>
+							</td>
+						</tr>
+					</table>
 				</div>
+			</h1>
 
-				<div id="infobody">
-					<div id="images">
-						<img src="seephotos.png" alt="seephotos.png" width=55 height=51>
-						<br><br>
-
-						<img src="sharenew.png" alt="sharenew.png" width=55 height=51>	
-						<br><br>
-
-						<img src="findmore.png" alt="findmore.png" width=55 height=51>
+			<div id="main">
+				<div id="info">
+					<div id="titlelite">
+						Connect with Adeeb.
 					</div>
 
-					<div id="text">
-						<br>
-						<b>See photos and updates</b> from friends in News Feed.
-						<br><br><br><br>
-				
-						<b>Share what's new</b> in your life on your Timeline.
-						<br><br><br><br>
-				
-						<b>Find more</b> of what you're looking for with Adeeb Search.
+					<div id="infobody">
+						<table style="border-spacing: 10px;">
+							<tr>
+								<div class="infocell">
+									<td class="inforow">
+										<div class="infoimg" style="text-align: center; width: 55px">
+											<img src="seephotos.png" alt="seephotos.png" style="vertical-align:middle">
+										</div>
+									</td>
+
+									<td class="inforow">
+										<div class="infotxt">
+											<span style=""><b>See photos and updates</b> of Adeeb in your News Feed.</span>
+										</div>
+									</td>
+								</div>
+							</tr>
+
+							<tr>
+								<div class="infocell">
+									<td class="inforow">
+										<div class="infoimg" style="text-align: center; width: 55px">
+											<img src="sharenew.png" alt="sharenew.png" style="vertical-align:middle">
+										</div>
+									</td>
+
+									<td class="inforow">
+										<div class="infotxt">
+											<span style=""><b>Share what's new</b> in your life on your Timeline.</span>
+										</div>
+									</td>
+								</div>
+							</tr>
+
+							<tr>
+								<td class="inforow">
+									<div class="infocell">
+										<div class="infoimg" style="text-align: center; width: 55px">
+											<img src="findmore.png" alt="findmore.png" style="vertical-align:middle">
+										</div>
+									</div>
+								</td>
+
+								<td class="inforow">
+									<div class="infotxt">
+										<span style=""><b>Find more</b> of what you're looking for with Adeeb Search.</span>
+									</div>
+								</td>
+							</tr>
+						</table>
 					</div>
 				</div>
-			</div>
 
-			<div id="signup">
-				<div id="title">
-					Sign Up
+				<div id="signup">
+					<div id="title">
+						Sign Up
+					</div>
+
+					<p style="padding-top: 20px">
+						It's free until we turn evil!
+					</p>
+
+					<table style="border-spacing: 10px;">
+						<tr>
+							<td>
+								<input id="firstname" type=text size="15" value="First Name"/>
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+								<input id="lastname" type=text size="15" value="Last Name"/>
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+								<input id="Susername" type=text size="15" value="User Name"/>
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+								<input id="Spassword" type=password size="15" value="Password"/>
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+								<button id="createaccountButton">Sign Up</button>
+							</td>
+						</tr>
+					</table>
 				</div>
 
-				<p>
-					It's free until we turn evil!
-				</p>
-
-				<input id="firstname" type=text size="15" value="First Name"/>
-
-				<br>
-
-				<input id="lastname" type=text size="15" value="Last Name"/>
-
-				<br>
-
-				<input id="Susername" type=text size="15" value="User Name"/>
-
-				<br>
-
-				<input id="Spassword" type=password size="15" value="Password"/>
-
-				<br><br>
-
-				<button id="createaccountButton">Sign Up</button>
+				<form method="post" action="cgi-bin/proof-login.py"> 
+					Name: <input name="requested_username" type=text size="30"/>
+					<br>
+					Pass: <input name="requested_password" type=text size="30"/>
+					<br>
+					<input type="submit"/> <input type="reset"/>
+				</form>
 			</div>
-
-			<form method="post" action="cgi-bin/proof-login.py"> 
-				Name: <input name="requested_username" type=text size="30"/>
-				<br>
-				Pass: <input name="requested_password" type=text size="30"/>
-				<br>
-				<input type="submit"/> <input type="reset"/>
-			</form>
 		</div>
 	</div>
 

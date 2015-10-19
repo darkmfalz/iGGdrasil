@@ -1,10 +1,40 @@
 /* Flexbox: https://css-tricks.com/snippets/css/a-guide-to-flexbox/ */
 
+
+*{
+
+	margin: 0;
+	padding: 0;
+
+} 
+
 html, body{
 
 	background-color: rgb(223,227,238);
-	overflow: hidden;
 	height: 100%;
+
+}
+
+table{
+
+	display: table;
+	border-spacing: 10px 2px;
+	border-color: gray;
+	border-collapse: separate;
+	
+}
+
+tbody{
+
+	display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+
+}
+
+.inforow{
+
+	height: 51px;
 
 }
 
@@ -12,8 +42,8 @@ h1{
 	
 	color: white;
 	font-family: "Arial", Helvetica, sans-serif;
-	margin-top: 0px;
 	border: 10px solid rgb(59,89,152);
+	padding-top: 20px;
 	background-color: rgb(59,89,152);
 	display: flex;
     justify-content: space-between;
@@ -37,8 +67,7 @@ h1{
 
 	display: flex;
 	justify-content: space-around;
-	overflow: auto;
-	padding-bottom: 100px;
+	padding-top: 20px;
 
 }
 
@@ -58,8 +87,7 @@ h1{
 
 #infobody{
 
-	display: flex;
-	justify-content: space-around;
+	white-space: nowrap;
 
 }
 
@@ -87,20 +115,30 @@ h1{
 .wrapper{
 
 	min-height:100%;
-	height: auto !important;
-	height: 100%;
-	margin: 0 auto -4em;
+
+}
+
+.inwrapper{
+
+	overflow: auto;
+	padding-bottom: 100px;
 
 }
 
 .footer{
 
+	/*Sticky footer CSS courtest of: http://www.cssstickyfooter.com/;*/
 	background-color: white;
 	text-align: center;
-	height: 4em;
 	margin-top: -100px;
 	height: 100px;
 	clear:both;
+
+}
+
+.infocell{
+
+	display: flex;
 
 }
 
