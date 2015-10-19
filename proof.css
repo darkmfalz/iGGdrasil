@@ -1,0 +1,116 @@
+/* Flexbox: https://css-tricks.com/snippets/css/a-guide-to-flexbox/ */
+
+html, body{
+
+	background-color: rgb(223,227,238);
+	height: 100%;
+
+}
+
+h1{
+	
+	color: white;
+	font-family: "Arial", Helvetica, sans-serif;
+	margin-top: 0px;
+	border: 10px solid rgb(59,89,152);
+	background-color: rgb(59,89,152);
+	display: flex;
+    justify-content: space-between;
+
+}
+
+#titlelink{
+
+	text-decoration: none;
+	color: white;
+
+}
+
+#login{
+
+	font-size: 40%;
+
+}
+
+#frontbody{
+
+	display: flex;
+	justify-content: space-around;
+
+}
+
+#info{
+
+	font-family: "Arial", Helvetica, sans-serif;
+
+}
+
+#signup{
+
+	font-family: "Arial", Helvetica, sans-serif;
+
+}
+
+#title{
+
+	font-family: "Arial", Helvetica, sans-serif;
+	font-size: 200%;
+	font-weight: bold;
+	text-align: center;
+
+}
+
+#titlelite{
+
+	font-family: "Arial", Helvetica, sans-serif;
+	font-size: 200%;
+	text-align: center;
+
+}
+
+#infobody{
+
+	display: flex;
+	justify-content: space-around;
+
+}
+
+#text{
+
+	margin-left: 1em;
+
+}
+
+.wrapper{
+
+	min-height:100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -4em;
+
+}
+
+.footer, .push{
+
+	text-align: center;
+	height: 4em;
+
+}
+
+.footer{
+
+	background-color: white;
+
+}
+
+.button{
+
+	background-color: black;
+
+}
+
+#firstname, #lastname, #Susername, #Spassword{
+
+	color: gray; 
+
+}

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>
+		Proof of Existence
+	</title>
+
+	<link rel="stylesheet" type="text/css" href="/proof.css">
+
+	<link rel="shortcut icon" href="C:/Everything%20Else/Blackhat/test201/favicon.ico" type="image/x-icon">
+	
+	<link rel="icon" href="C:/Everything%20Else/Blackhat/test201/favicon.ico" type="image/x-icon">
+
+	<script src="http://code.jquery.com/jquery-1.11.3.min.js">
+	</script>
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+
+			//login the user
+			$("#loginButton").click(function(){
+
+				var username = $("#username").val();
+				var password = $("#password").val();
+
+				$.ajax({
+
+					url: "cgi-bin/proof-login.py",
+
+					data: {
+						requested_username: username,
+						requested_password: password
+					},
+
+					type: "GET",
+
+					dataType: "json",
+
+					success: function(data){
+
+						console.log("Successfully logged in as:");
+						console.log(username);
+
+					},
+
+					error: function(){
+
+						alert("Invalid username/password combination.");
+						$("#username").val("");
+						$("#password").val("");
+
+					}
+
+				});
+
+			});
+
+			//create user account
+			$("#createaccountButton").click(function(){
+
+				var username = $("#Susername").val();
+				var firstname = $("#firstname").val();
+				var lastname = $("#lastname").val();
+				var password = $("#Spassword").val();
+
+				$.ajax({
+
+					url: "cgi-bin/proof-create-account.py",
+
+					data: {
+						requested_username: username,
+						requested_firstname: firstname,
+						requested_lastname: lastname,
+						requested_password: password
+					},
+
+					type: "POST",
+
+					dataType: "json",
+
+					success: function(data){
+
+						console.log("Successfully created account:");
+						console.log(username);
+
+					},
+
+					error: function(){
+
+						alert("Username taken.");
+						$("#Susername").val("");
+						$("#Spassword").val("");
+						$("#firstname").val("");
+						$("#lastname").val("");
+
+					}
+
+				});
+
+			});
+
+			$(document).on('click', function(event) {
+
+  				if (!$(event.target).closest('#firstname').length) {
+
+    				if("".localeCompare($("#firstname").val()) == 0){
+
+						$("#firstname").attr("value", "First Name");
+						$("#firstname").css("color", "gray");
+
+					}
+
+				}
+
+				if (!$(event.target).closest('#lastname').length) {
+
+					if("".localeCompare($("#lastname").val()) == 0){
+
+						$("#lastname").attr("value", "Last Name");
+						$("#lastname").css("color", "gray");
+
+					}
+
+				}
+
+				if (!$(event.target).closest('#Susername').length) {
+
+					if("".localeCompare($("#Susername").val()) == 0){
+
+						$("#Susername").attr("value", "User Name");
+						$("#Susername").css("color", "gray");
+
+					}
+
+				}
+
+				if (!$(event.target).closest('#Spassword').length) {
+
+					if("".localeCompare($("#Spassword").val()) == 0){
+
+						$("#Spassword").attr("value", "Password");
+						$("#Spassword").css("color", "gray");
+
+					}
+
+				}
+
+			});
+
+			$("#firstname").click(function(){
+
+				if("First Name".localeCompare($("#firstname").val()) == 0){
+					$("#firstname").attr("value", "");
+					$("#firstname").css("color", "black");
+				}
+
+			});
+
+			$("#lastname").click(function(){
+
+				if("Last Name".localeCompare($("#lastname").val()) == 0){
+					$("#lastname").attr("value", "");
+					$("#lastname").css("color", "black");
+				}
+				
+			});
+
+			$("#Susername").click(function(){
+
+				if("User Name".localeCompare($("#Susername").val()) == 0){
+					$("#Susername").attr("value", "");
+					$("#Susername").css("color", "black");
+				}
+				
+			});
+
+			$("#Spassword").click(function(){
+
+				if("Password".localeCompare($("#Spassword").val()) == 0){
+					$("#Spassword").attr("value", "");
+					$("#Spassword").css("color", "black");
+				}
+				
+			});
+
+		});
+	</script>
+</head>
+
+<body>
+	<div clas="wrappper">
+		<h1>
+			<a id="titlelink" href="/second.html">
+				proof of existence
+			</a>
+
+			<div id="login">
+				Username&nbsp;<input id="username" type=text size="15"/>
+				<br>
+
+				Password&nbsp;<input id="password" type=password size="15"/>
+
+				<button id="loginButton">Log In</button>
+			</div>
+		</h1>
+
+		<div id="frontbody">
+			<div id="info">
+				<div id="titlelite">
+					Connect with existence.
+				</div>
+
+				<div id="infobody">
+					<div id="images">
+						<img src="seephotos.png" alt="seephotos.png" width=55 height=51>
+						<br><br>
+
+						<img src="sharenew.png" alt="sharenew.png" width=55 height=51>	
+						<br><br>
+
+						<img src="findmore.png" alt="findmore.png" width=55 height=51>
+					</div>
+
+					<div id="text">
+						<br>
+						<b>See photos and updates</b> from friends in News Feed.
+						<br><br><br><br>
+				
+						<b>Share what's new</b> in your life on your Timeline.
+						<br><br><br><br>
+				
+						<b>Find more</b> of what you're looking for with Adeeb Search.
+					</div>
+				</div>
+			</div>
+
+			<div id="signup">
+				<div id="title">
+					Sign Up
+				</div>
+
+				<p>
+					It's free, bitch.
+				</p>
+
+				<input id="firstname" type=text size="15" value="First Name"/>
+
+				<br>
+
+				<input id="lastname" type=text size="15" value="Last Name"/>
+
+				<br>
+
+				<input id="Susername" type=text size="15" value="User Name"/>
+
+				<br>
+
+				<input id="Spassword" type=password size="15" value="Password"/>
+
+				<br><br>
+
+				<button id="createaccountButton">Sign Up</button>
+			</div>
+		</div>
+
+		<form method="post" action="cgi-bin/proof-login.py"> 
+			Name: <input name="requested_username" type=text size="30"/>
+			<br>
+			Pass: <input name="requested_password" type=text size="30"/>
+			<br>
+			<input type="submit"/> <input type="reset"/>
+		</form>
+
+		<div class="push"></div>
+	</div>
+
+	<div class="footer" xmlns:dc="http://purl.org/dc/elements/1.1/">
+		<p id="copyright" property="dc:rights">&copy;
+  			<span property="dc:dateCopyrighted">2015</span>
+
+  			<span property="dc:publisher">The Adeeb Everything Company</span>
+		</p>
+	</div>
+</body>
+
+</html>
