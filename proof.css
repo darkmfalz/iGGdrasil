@@ -32,10 +32,12 @@ h1{
 
 }
 
-#frontbody{
+#main{
 
 	display: flex;
 	justify-content: space-around;
+	overflow: auto;
+	padding-bottom: 150px;
 
 }
 
@@ -90,16 +92,14 @@ h1{
 
 }
 
-.footer, .push{
-
-	text-align: center;
-	height: 4em;
-
-}
-
 .footer{
 
 	background-color: white;
+	text-align: center;
+	height: 4em;
+	margin-top: -150px;
+	height: 150px;
+	clear:both;
 
 }
 
