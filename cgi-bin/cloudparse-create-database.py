@@ -11,7 +11,7 @@ c = conn.cursor()
 c.execute('create table accounts(username varchar(100) primary key, firstname varchar(100), lastname varchar(100), password varchar(100), image varchar(100))')
 
 # insert 3 rows of data into the 'users' table
-c.execute("insert into accounts values('darkmfalz', 'Adeeb', 'Sheikh', 'admin', '../batman.jpg');")
+c.execute("insert into accounts values('darkmfalz', 'Adeeb', 'Sheikh', 'admin', '../img/batman.jpg');")
 
 # commit ('save') the transaction and close the connection
 conn.commit()
