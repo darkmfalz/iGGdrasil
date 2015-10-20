@@ -41,7 +41,7 @@ data = {}
 data['username'] = requested_username
 data['firstname'] = requested_firstname
 data['lastname'] = requested_lastname
-data['image'] = "../v.jpg"
+data['image'] = "../img/v.jpg"
 
 notInDB = True
 
@@ -51,7 +51,7 @@ for r in c.execute('select * from users;'):
 		notInDB = False
 
 if notInDB:
-	c.execute('insert into accounts values (?, ?, ?, ?, ?)', [requested_username, requested_firstname, requested_lastname, requested_password, "../v.jpg"])
+	c.execute('insert into accounts values (?, ?, ?, ?, ?)', [requested_username, requested_firstname, requested_lastname, requested_password, "../img/v.jpg"])
 	conn.commit()
 
 	print cookie

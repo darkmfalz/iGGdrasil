@@ -22,9 +22,40 @@
 
 			$("#username").focus();
 
+			//the re-initialization fields for the 'create account' textboxes
+			function firstnameinit(){
+
+				$("#firstname").val("First Name");
+				$("#firstname").css("color", "gray");
+
+			}
+
+			function lastnameinit(){
+
+				$("#lastname").val("Last Name");
+				$("#lastname").css("color", "gray");
+
+			}
+
+			function usernameinit(){
+
+				$("#Susername").val("User Name");
+				$("#Susername").css("color", "gray");
+
+			}
+
+			function passwordinit(){
+
+				$("#Spassword").val("Password");
+				$("#Spassword").css("color", "gray");
+
+			}
+
+
 			//login the user
 			$("#loginButton").click(function(){
 
+				//get the username and password from the textbox
 				var username = $("#username").val();
 				var password = $("#password").val();
 
@@ -93,10 +124,10 @@
 					error: function(){
 
 						alert("Username taken.");
-						$("#Susername").val("");
-						$("#Spassword").val("");
-						$("#firstname").val("");
-						$("#lastname").val("");
+						firstnameinit();
+						lastnameinit();
+						usernameinit();
+						passwordinit();
 
 					}
 
@@ -107,8 +138,10 @@
 			$("#firstname").focus(function(){
 
 				if("First Name".localeCompare($("#firstname").val()) == 0){
-					$("#firstname").attr("value", "");
+
+					$("#firstname").val("");
 					$("#firstname").css("color", "black");
+
 				}
 
 			});
@@ -117,8 +150,7 @@
 
 				if("".localeCompare($("#firstname").val()) == 0){
 
-					$("#firstname").attr("value", "First Name");
-					$("#firstname").css("color", "gray");
+					firstnameinit();
 
 				}
 
@@ -127,8 +159,10 @@
 			$("#lastname").focus(function(){
 
 				if("Last Name".localeCompare($("#lastname").val()) == 0){
-					$("#lastname").attr("value", "");
+
+					$("#lastname").val("");
 					$("#lastname").css("color", "black");
+
 				}
 				
 			});
@@ -137,8 +171,7 @@
 
 				if("".localeCompare($("#lastname").val()) == 0){
 
-					$("#lastname").attr("value", "Last Name");
-					$("#lastname").css("color", "gray");
+					lastnameinit();
 
 				}
 
@@ -147,8 +180,10 @@
 			$("#Susername").focus(function(){
 
 				if("User Name".localeCompare($("#Susername").val()) == 0){
-					$("#Susername").attr("value", "");
+
+					$("#Susername").val("");
 					$("#Susername").css("color", "black");
+
 				}
 				
 			});
@@ -157,8 +192,7 @@
 
 				if("".localeCompare($("#Susername").val()) == 0){
 
-					$("#Susername").attr("value", "User Name");
-					$("#Susername").css("color", "gray");
+					usernameinit();
 
 				}
 
@@ -167,8 +201,10 @@
 			$("#Spassword").focus(function(){
 
 				if("Password".localeCompare($("#Spassword").val()) == 0){
-					$("#Spassword").attr("value", "");
+
+					$("#Spassword").val("");
 					$("#Spassword").css("color", "black");
+
 				}
 				
 			});
@@ -177,8 +213,7 @@
 
 				if("".localeCompare($("#Spassword").val()) == 0){
 
-					$("#Spassword").attr("value", "Password");
-					$("#Spassword").css("color", "gray");
+					passwordinit();
 
 				}
 
@@ -192,9 +227,14 @@
 	<div class="wrapper">
 		<div class="inwrapper">
 			<h1>
-				<a id="titlelink" href="/cloudparse.html" title="Go to main page">
-					<img src="img/cloudwhite.png" alt="cloudwhite.png" width=55 height=51 style="vertical-align:middle">
-					CloudParse
+				<a id="titlelink" class="bannerlink" href="/cloudparse.html" title="Go to main page">
+					<div style="white-space: nowrap;">
+						<img src="img/cloudwhite.png" alt="cloudwhite.png" width=55 height=51 style="vertical-align:middle">
+						
+						<span>
+							CloudParse
+						</span>
+					</div>
 				</a>
 
 				<div id="login">
@@ -234,7 +274,7 @@
 								</div>
 							</td>
 							<td>
-								<a href="/recover/initiate?lwv=111">
+								<a class="bannerlink"href="/img/Grammarnazilogo.png">
 									Forgot your password?
 								</a>
 							</td>
