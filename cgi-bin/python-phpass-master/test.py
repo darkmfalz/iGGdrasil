@@ -67,3 +67,4 @@ if ok == 6:
 else:
 	print "Some tests have FAILED"
 
+wait = input("PRESS ENTER TO TERMINATE.")
