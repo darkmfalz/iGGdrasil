@@ -36,19 +36,30 @@ print "Content-type: text/html"
 import json
 data = {}
 
-for r in c.execute('select * from accounts where username=? and password=?', [requested_username, requested_password]):
-	username = r[0]
-	firstname = r[1]
-	lastname = r[2]
-	image = r[4]
+for r in c.execute('select * from accounts where username=?', [requested_username]):
 
-	data['username'] = username
-	data['firstname'] = firstname
-	data['lastname'] = lastname
-	data['image'] = image
+	#Salt 'n' Hash the password
+	import hashlib
 
-	print cookie
-	print
-	print json.dumps(data)
+	salt = r[5]
+	requested_password = salt + requested_password
+	hash_object = hashlib.sha1(b''+requested_password)
+	hex_dig = hash_object.hexdigest()
+	requested_password = hex_dig
+
+	if(requested_password == r[4]):
+		username = r[0]
+		firstname = r[1]
+		lastname = r[2]
+		image = r[3]
+
+		data['username'] = username
+		data['firstname'] = firstname
+		data['lastname'] = lastname
+		data['image'] = image
+
+		print cookie
+		print
+		print json.dumps(data)
 
 conn.close()

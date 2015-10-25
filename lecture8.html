@@ -1,0 +1,49 @@
+<html>
+
+<!--
+Lecture 8 - CSC 210 Fall 2015
+Philip Guo
+-->
+
+<head>
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+  console.log("Hello!");
+  if (localStorage['pageViews'] !== undefined) {
+    localStorage['pageViews']++;
+  }
+  else {
+    localStorage['pageViews'] = 1;
+  }
+  console.log(localStorage['pageViews'] + ' views');
+  $("#sessionStoreButton").click(function() {
+    console.log("clicked!");
+    var k = $("#keyInput").val();
+    var v = $("#valueInput").val();
+    sessionStorage[k] = v;
+  });
+  $("#localStoreButton").click(function() {
+    console.log("clicked!");
+    var k = $("#keyInput").val();
+    var v = $("#valueInput").val();
+    localStorage[k] = v;
+  });
+});
+</script>
+</head>
+
+<body>
+
+<h1>HTML5 Storage Demo</h1>
+
+Key: <input type="text" id="keyInput"/>
+<br/>
+Value: <input type="text" id="valueInput"/>
+<p/>
+
+<button id="sessionStoreButton">Store in sessionStorage!</button>
+<button id="localStoreButton">Store in localStorage!</button>
+
+</body>
+</html>
