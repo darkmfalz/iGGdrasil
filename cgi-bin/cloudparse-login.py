@@ -15,7 +15,7 @@ c = conn.cursor()
 
 import re
 
-EMAIL_REGEX = re.compile(r"[a-zA-z0-9_\-]+@[a-zA-z0-9_\-]+\.[a-zA-z0-9_\-]+")
+EMAIL_REGEX = re.compile(r"[a-zA-z0-9_\-\.]+@[a-zA-z0-9_\-\.]+\.[a-zA-z0-9_\-\.]+")
 
 if EMAIL_REGEX.match(requested_username):
 
@@ -24,14 +24,14 @@ if EMAIL_REGEX.match(requested_username):
 	import json
 	data = {}
 
-	for r in c.execute('select * from accounts where email=?', [requested_username]):
+	for r in c.execute('select * from accounts where email=?', [requested_username].encode('hex')):
 
 		import Cookie
 		import datetime
 		import os
 
 		cookie = Cookie.SimpleCookie()
-		cookie['username'] = r[0]
+		cookie['username'] = r[0].decode('hex')
 		expiration = datetime.datetime.now() + datetime.timedelta(days=30)
 		cookie['username']["expires"] = \
 		expiration.strftime("%a, %d-%b-%Y %H:%M:%S PST")
@@ -54,10 +54,10 @@ if EMAIL_REGEX.match(requested_username):
 		requested_password = hex_dig
 
 		if(requested_password == r[5]):
-			username = r[0]
-			firstname = r[1]
-			lastname = r[2]
-			image = r[3]
+			username = r[0].decode('hex')
+			firstname = r[1].decode('hex')
+			lastname = r[2].decode('hex')
+			image = r[3].decode('hex')
 
 			data['username'] = username
 			data['firstname'] = firstname
@@ -76,7 +76,7 @@ else:
 	import json
 	data = {}
 
-	for r in c.execute('select * from accounts where username=?', [requested_username]):
+	for r in c.execute('select * from accounts where username=?', [requested_username.encode('hex')]):
 
 		import Cookie
 		import datetime
@@ -106,10 +106,10 @@ else:
 		requested_password = hex_dig
 
 		if(requested_password == r[5]):
-			username = r[0]
-			firstname = r[1]
-			lastname = r[2]
-			image = r[3]
+			username = r[0].decode('hex')
+			firstname = r[1].decode('hex')
+			lastname = r[2].decode('hex')
+			image = r[3].decode('hex')
 
 			data['username'] = username
 			data['firstname'] = firstname

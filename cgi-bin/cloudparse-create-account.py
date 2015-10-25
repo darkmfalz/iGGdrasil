@@ -63,14 +63,16 @@ notInDB = True
 #Checks if the given email is even an email address, using REGEX
 import re
 
-EMAIL_REGEX = re.compile(r"[a-zA-z0-9_\-]+@[a-zA-z0-9_\-]+\.[a-zA-z0-9_\-]+")
+EMAIL_REGEX = re.compile(r"[a-zA-z0-9_\-\.]+@[a-zA-z0-9_\-\.]+\.[a-zA-z0-9_\-\.]+")
 if not EMAIL_REGEX.match(requested_email):
+	notInDB = False
+if EMAIL_REGEX.match(requested_username):
 	notInDB = False
 
 #Checks if the current username or email is already in the database
 for r in c.execute('select * from accounts'):
-	name = r[0]
-	email = r[4]
+	name = r[0].decode('hex')
+	email = r[4].decode('hex')
 	if name == requested_username:
 		notInDB = False
 	if email == requested_email:
@@ -79,7 +81,7 @@ for r in c.execute('select * from accounts'):
 print "Content-type: text/html"
 
 if notInDB:
-	c.execute('insert into accounts values (?, ?, ?, ?, ?, ?, ?)', [requested_username, requested_firstname, requested_lastname, "../img/v.jpg", requested_email, requested_password, salt])
+	c.execute('insert into accounts values (?, ?, ?, ?, ?, ?, ?)', [requested_username.encode('hex'), requested_firstname.encode('hex'), requested_lastname.encode('hex'), "../img/v.jpg".encode('hex'), requested_email.encode('hex'), requested_password, salt])
 	conn.commit()
 
 	print cookie
