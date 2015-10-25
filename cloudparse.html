@@ -65,8 +65,6 @@
 				var username = $("#username").val();
 				var password = $("#password").val();
 
-				//here we should hash and salt using JavaScript
-
 				$.ajax({
 
 					url: "/cgi-bin/cloudparse-login.py",
@@ -86,6 +84,10 @@
 						console.log(data.username);
 						$("#username").val("");
 						$("#password").val("");
+
+						//Updates the banner to reflect the fact that the user is logged in
+						$("#login").html("<table style='border-spacing: 10px 10px; padding-bottom: 0px'> <tr> <td> <img src='" + data.image + "' alt='profile picture' width=30 height=30 style='vertical-align:middle'> </td> <td>" + data.username + "'s Profile" + "</td> </tr> </table>");
+						$("#login").css("")
 
 					},
 
@@ -287,7 +289,7 @@
 		<div class="inwrapper">
 			<h1>
 				<a id="titlelink" class="bannerlink" href="/cloudparse.html" title="Go to main page">
-					<div style="white-space: nowrap;">
+					<div style="white-space: nowrap; padding-top: 0px; padding-bottom: 10px;">
 						<img src="img/cloudwhite.png" alt="cloudwhite.png" width=55 height=51 style="vertical-align:middle">
 						
 						<span>
@@ -323,6 +325,7 @@
 								</button>
 							</td>
 						</tr>
+
 						<tr>
 							<td>
 								<div>
@@ -437,7 +440,7 @@
 
 						<tr>
 							<td>
-								<input id="email" type=text size="30" value="Email Address"/>
+								<input id="email" type=text size="30" value="Email Address" autocomplete="off"/>
 							</td>
 						</tr>
 

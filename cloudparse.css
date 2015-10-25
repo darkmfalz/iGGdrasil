@@ -44,9 +44,11 @@ h1{
 	font-family: "Arial", Helvetica, sans-serif;
 	border: 10px solid rgb(59,89,152);
 	padding-top: 20px;
+	padding-left: 10px;
+	padding-right: 10px;
 	background-color: rgb(59,89,152);
 	display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
 
 }
 

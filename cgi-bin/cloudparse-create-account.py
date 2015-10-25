@@ -81,9 +81,11 @@ for r in c.execute('select * from accounts'):
 print "Content-type: text/html"
 
 if notInDB:
+	#inserts the account values into the database, but it encodes them in hex first, to prevent SQL injection
 	c.execute('insert into accounts values (?, ?, ?, ?, ?, ?, ?)', [requested_username.encode('hex'), requested_firstname.encode('hex'), requested_lastname.encode('hex'), "../img/v.jpg".encode('hex'), requested_email.encode('hex'), requested_password, salt])
 	conn.commit()
 
+	#returns the cookie and json
 	print cookie
 	print
 	print json.dumps(data)
