@@ -91,7 +91,7 @@
 
 					error: function(){
 
-						alert("Invalid username/password combination.");
+						alert("There was a problem: invalid username/password combination.");
 						$("#username").val("");
 						$("#password").val("");
 
@@ -110,37 +110,55 @@
 				var password = $("#Spassword").val();
 				var email = $("#email").val();
 
-				$.ajax({
+				if(/[a-zA-z0-9_\-]+@[a-zA-z0-9_\-]+\.[a-zA-z0-9_\-]+/.test(email)){
 
-					url: "/cgi-bin/cloudparse-create-account.py",
+					$.ajax({
 
-					data: {
-						requested_username: username,
-						requested_firstname: firstname,
-						requested_lastname: lastname,
-						requested_password: password,
-						requested_email: email
-					},
+						url: "/cgi-bin/cloudparse-create-account.py",
 
-					type: "POST",
+						data: {
+							requested_username: username,
+							requested_firstname: firstname,
+							requested_lastname: lastname,
+							requested_password: password,
+							requested_email: email
+						},
 
-					dataType: "json",
+						type: "POST",
 
-					success: function(data){
+						dataType: "json",
 
-						console.log("Successfully created account:");
-						console.log(data.username);
-						firstnameinit();
-						lastnameinit();
-						usernameinit();
-						passwordinit();
-						emailinit();
+						success: function(data){
 
-					},
+							console.log("Successfully created account:");
+							console.log(data.username);
+							firstnameinit();
+							lastnameinit();
+							usernameinit();
+							passwordinit();
+							emailinit();
 
-					error: function(){
+						},
 
-						alert("There was a problem: username is taken, or email is taken/invalid.");
+						error: function(){
+
+							alert("There was a problem: the username is taken, or the email is taken/in an invalid format.");
+							firstnameinit();
+							lastnameinit();
+							usernameinit();
+							passwordinit();
+							emailinit();
+
+						}
+
+					});
+
+				}
+				else{
+
+					function invalidEmail(){
+
+						alert("There was a problem: the email is in an invalid format.");
 						firstnameinit();
 						lastnameinit();
 						usernameinit();
@@ -149,7 +167,9 @@
 
 					}
 
-				});
+					invalidEmail();
+
+				}
 
 			});
 
