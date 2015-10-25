@@ -51,6 +51,12 @@
 
 			}
 
+			function emailinit(){
+
+				$("#email").val("Email Address");
+				$("#email").css("color", "gray");
+
+			}
 
 			//login the user
 			$("#loginButton").click(function(){
@@ -78,6 +84,8 @@
 
 						console.log("Successfully logged in as:");
 						console.log(data.username);
+						$("#username").val("");
+						$("#password").val("");
 
 					},
 
@@ -100,6 +108,7 @@
 				var firstname = $("#firstname").val();
 				var lastname = $("#lastname").val();
 				var password = $("#Spassword").val();
+				var email = $("#email").val();
 
 				$.ajax({
 
@@ -109,10 +118,11 @@
 						requested_username: username,
 						requested_firstname: firstname,
 						requested_lastname: lastname,
-						requested_password: password
+						requested_password: password,
+						requested_email: email
 					},
 
-					type: "GET",
+					type: "POST",
 
 					dataType: "json",
 
@@ -120,16 +130,22 @@
 
 						console.log("Successfully created account:");
 						console.log(data.username);
+						firstnameinit();
+						lastnameinit();
+						usernameinit();
+						passwordinit();
+						emailinit();
 
 					},
 
 					error: function(){
 
-						alert("Username taken.");
+						alert("There was a problem: username is taken, or email is taken/invalid.");
 						firstnameinit();
 						lastnameinit();
 						usernameinit();
 						passwordinit();
+						emailinit();
 
 					}
 
@@ -221,6 +237,27 @@
 
 			});
 
+			$("#email").focus(function(){
+
+				if("Email Address".localeCompare($("#email").val()) == 0){
+
+					$("#email").val("");
+					$("#email").css("color", "black");
+
+				}
+				
+			});
+
+			$("#email").focusout(function(){
+
+				if("".localeCompare($("#email").val()) == 0){
+
+					emailinit();
+
+				}
+
+			});
+
 		});
 	</script>
 </head>
@@ -243,7 +280,7 @@
 					<table>
 						<tr>
 							<td>
-								Username
+								Username or Email
 							</td>
 
 							<td>
@@ -375,6 +412,12 @@
 						<tr>
 							<td>
 								<input id="Spassword" type=password size="30" value="Password"/>
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+								<input id="email" type=text size="30" value="Email Address"/>
 							</td>
 						</tr>
 

@@ -11,6 +11,7 @@ requested_username = form['requested_username'].value
 requested_firstname = form['requested_firstname'].value
 requested_lastname = form['requested_lastname'].value
 requested_password = form['requested_password'].value
+requested_email = form['requested_email'].value
 
 #SQLite Imports
 import sqlite3
@@ -57,18 +58,28 @@ hash_object = hashlib.sha1(b''+requested_password)
 hex_dig = hash_object.hexdigest()
 requested_password = hex_dig
 
-#Checks if the current username is already in the database
 notInDB = True
 
+#Checks if the given email is even an email address, using REGEX
+import re
+
+EMAIL_REGEX = re.compile(r"[a-zA-z0-9_\-]+@[a-zA-z0-9_\-]+\.[a-zA-z0-9_\-]+")
+if not EMAIL_REGEX.match(requested_email):
+	notInDB = False
+
+#Checks if the current username or email is already in the database
 for r in c.execute('select * from accounts'):
 	name = r[0]
+	email = r[4]
 	if name == requested_username:
+		notInDB = False
+	if email == requested_email:
 		notInDB = False
 
 print "Content-type: text/html"
 
 if notInDB:
-	c.execute('insert into accounts values (?, ?, ?, ?, ?, ?)', [requested_username, requested_firstname, requested_lastname, "../img/v.jpg",  requested_password, salt])
+	c.execute('insert into accounts values (?, ?, ?, ?, ?, ?, ?)', [requested_username, requested_firstname, requested_lastname, "../img/v.jpg", requested_email, requested_password, salt])
 	conn.commit()
 
 	print cookie
