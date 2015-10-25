@@ -20,6 +20,58 @@
 	<script type="text/javascript">
 		$(document).ready(function(){
 
+			function getCookie(cname) {
+			    var name = cname + "=";
+			    var ca = document.cookie.split(';');
+			    for(var i=0; i<ca.length; i++) {
+			        var c = ca[i];
+			        while (c.charAt(0)==' ') c = c.substring(1);
+			        if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
+			    }
+			    return "";
+			}
+
+			function updateBanner(data){
+
+				$("#login").html("<table style='border-spacing: 10px 10px; padding-bottom: 0px'> <tr> <td> <img src='" + data.image + "' alt='profile picture' width=30 height=30 style='vertical-align:middle'> </td> <td>" + data.username + "'s Profile" + "</td> </tr> </table>");
+
+			}
+
+			if(getCookie('username').localeCompare("") != 0){
+
+				$.ajax({
+
+					url: "/cgi-bin/cloudparse-authenticate.py",
+
+					data: {
+						requested_username: getCookie('username')
+					},
+
+					type: "POST",
+
+					dataType: "json",
+
+					success: function(data){
+
+						console.log("Successfully authenticated as:");
+						console.log(data.username);
+
+						//Updates the banner to reflect the fact that the user is logged in
+						updateBanner(data);
+
+					},
+
+					error: function(){
+
+						alert("There was a problem with the cookies.");
+
+					}
+
+				});
+
+
+			}
+
 			$("#username").focus();
 
 			//the re-initialization fields for the 'create account' textboxes
@@ -74,7 +126,7 @@
 						requested_password: password
 					},
 
-					type: "GET",
+					type: "POST",
 
 					dataType: "json",
 
@@ -86,8 +138,7 @@
 						$("#password").val("");
 
 						//Updates the banner to reflect the fact that the user is logged in
-						$("#login").html("<table style='border-spacing: 10px 10px; padding-bottom: 0px'> <tr> <td> <img src='" + data.image + "' alt='profile picture' width=30 height=30 style='vertical-align:middle'> </td> <td>" + data.username + "'s Profile" + "</td> </tr> </table>");
-						$("#login").css("")
+						updateBanner(data);
 
 					},
 
@@ -139,6 +190,8 @@
 							usernameinit();
 							passwordinit();
 							emailinit();
+
+							updateBanner(data);
 
 						},
 
