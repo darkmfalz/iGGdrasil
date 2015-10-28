@@ -30,7 +30,7 @@ if EMAIL_REGEX.match(requested_username):
 	data = {}
 
 	#Checks over the accounts for the given email -- the email is encoded in hex, to prevent SQL injection
-	for r in c.execute('select * from accounts where email=?', [requested_username].encode('hex')):
+	for r in c.execute('select * from accounts where email=?', [requested_username.encode('hex')]):
 
 		#Cookie operations
 		import Cookie
@@ -42,7 +42,7 @@ if EMAIL_REGEX.match(requested_username):
 		#The username in the cookie is the DECODED hex retrieved from the database
 		cookie['username'] = r[0].decode('hex')
 		expiration = datetime.datetime.now() + datetime.timedelta(days=36500)
-		if(keep_loggedin == "ADEEB"):
+		if(keep_loggedin == "TRUE"):
 			cookie['username']["expires"] = \
 			expiration.strftime("%a, %d-%b-%Y %H:%M:%S EST")
 		cookie['username']['path'] = "/"
@@ -111,7 +111,7 @@ else:
 		cookie = Cookie.SimpleCookie()
 		cookie['username'] = requested_username
 		expiration = datetime.datetime.now() + datetime.timedelta(days=36500)
-		if(keep_loggedin == "ADEEB"):
+		if(keep_loggedin == "TRUE"):
 			cookie['username']["expires"] = \
 			expiration.strftime("%a, %d-%b-%Y %H:%M:%S EST")
 		cookie['username']['path'] = "/"
