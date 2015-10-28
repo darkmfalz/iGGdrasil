@@ -1,4 +1,4 @@
 RewriteEngine	On
 RewriteRule		^$					/main.html
-RewriteRule 	^main$				/main.html
-RewriteRule 	^user/([^/]+)$		/cgi-bin/cloudparse-user.py?username=$1
+RewriteRule		^main$				/main.html
+RewriteRule		^user/([^/]+)$		/cgi-bin/cloudparse-user.py?username=$1
