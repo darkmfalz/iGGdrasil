@@ -9,6 +9,7 @@ form = cgi.FieldStorage()
 #Retrieve the username and password from the HTML field
 requested_username = form['requested_username'].value
 requested_password = form['requested_password'].value
+keep_loggedin = form['keep_loggedin'].value
 
 #initialize use of the database
 import sqlite3
@@ -40,9 +41,11 @@ if EMAIL_REGEX.match(requested_username):
 		cookie = Cookie.SimpleCookie()
 		#The username in the cookie is the DECODED hex retrieved from the database
 		cookie['username'] = r[0].decode('hex')
-		expiration = datetime.datetime.now() + datetime.timedelta(days=30)
-		cookie['username']["expires"] = \
-		expiration.strftime("%a, %d-%b-%Y %H:%M:%S PST")
+		expiration = datetime.datetime.now() + datetime.timedelta(days=36500)
+		if(keep_loggedin == "ADEEB"):
+			cookie['username']["expires"] = \
+			expiration.strftime("%a, %d-%b-%Y %H:%M:%S EST")
+		cookie['username']['path'] = "/"
 
 		#If a cookie already exists, destroy it!
 		stored_cookie_string = os.environ.get('HTTP_COOKIE')
@@ -97,12 +100,6 @@ else:
 		import datetime
 		import os
 
-		cookie = Cookie.SimpleCookie()
-		cookie['username'] = requested_username
-		expiration = datetime.datetime.now() + datetime.timedelta(days=30)
-		cookie['username']["expires"] = \
-		expiration.strftime("%a, %d-%b-%Y %H:%M:%S PST")
-
 		stored_cookie_string = os.environ.get('HTTP_COOKIE')
 		if not stored_cookie_string:
 			pass
@@ -110,6 +107,14 @@ else:
 			old = Cookie.SimpleCookie(stored_cookie_string)
 			if 'username' in old:
 				old['username']['expires']='Thu, 01 Jan 1970 00:00:00 GMT'
+
+		cookie = Cookie.SimpleCookie()
+		cookie['username'] = requested_username
+		expiration = datetime.datetime.now() + datetime.timedelta(days=36500)
+		if(keep_loggedin == "ADEEB"):
+			cookie['username']["expires"] = \
+			expiration.strftime("%a, %d-%b-%Y %H:%M:%S EST")
+		cookie['username']['path'] = "/"
 
 		#Salt 'n' Hash the password to check it later
 		import hashlib

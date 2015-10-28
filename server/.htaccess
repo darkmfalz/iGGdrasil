@@ -1,0 +1,3 @@
+RewriteEngine	On
+RewriteRule 	/main	/main.html
+RewriteRule 	^user/(.+)$		/cgi-bin/cloudparse-user.py?username=$1

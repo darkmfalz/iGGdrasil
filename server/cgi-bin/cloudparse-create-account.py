@@ -26,9 +26,10 @@ import os
 #Creates a new cookie for the current user
 cookie = Cookie.SimpleCookie()
 cookie['username'] = requested_username
-expiration = datetime.datetime.now() + datetime.timedelta(days=30)
-cookie['username']["expires"] = \
-expiration.strftime("%a, %d-%b-%Y %H:%M:%S PST")
+#expiration = datetime.datetime.now() + datetime.timedelta(days=36500)
+#cookie['username']["expires"] = \
+#expiration.strftime("%a, %d-%b-%Y %H:%M:%S EST")
+cookie['username']['path'] = "/"
 
 #Checks if there already is a user cookie in the browser
 #If so, the cookie is deleted
