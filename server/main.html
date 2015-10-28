@@ -105,7 +105,7 @@
 						$("#username").val("");
 						$("#password").val("");
 						//window.location.replace("./user/".concat(data.username));
-						window.location.replace("./cgi-bin/cloudparse-user.py?username=".concat(data.username));
+						window.location.replace("./user/".concat(data.username));
 
 					},
 
@@ -158,7 +158,7 @@
 							passwordinit();
 							emailinit();
 
-							window.location.replace("./cgi-bin/cloudparse-user.py?username=".concat(data.username));
+							window.location.replace("./user/".concat(data.username));
 
 						},
 

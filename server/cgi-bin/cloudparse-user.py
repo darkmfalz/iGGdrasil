@@ -43,22 +43,15 @@ def badLogin():
 			</script>
 
 			<script type="text/javascript">
-				$(document).ready(function(){
-					window.location.replace("../main.html");
-					});
+				function loader(){
+					window.location.replace("../");
+					}
+				window.onload = loader
 			</script>
 		</head>
 	'''
 
 	print '<body>'
-	print 	'<h1>BAD LOGIN, REDIRECTING...</h1>'
-	stored_cookie_string = os.environ.get('HTTP_COOKIE')
-	if not stored_cookie_string:
-		pass
-	else:
-		cookie = Cookie.SimpleCookie(stored_cookie_string)
-		if 'username' in cookie:
-			print 	'<p>' + cookie['username'].value + '</p>'
 	print	'''</body>
 	</html>'''
 
