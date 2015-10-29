@@ -8,6 +8,7 @@ import json
 import Cookie
 import datetime
 import os
+import hashlib
 
 #For error testing if the cgi scripts end up all wonky.
 #But it's surprisingly unhelpful for cgi scripts that don't load pages.
@@ -41,6 +42,7 @@ if EMAIL_REGEX.match(requested_username):
 		#The username in the cookie is the DECODED hex retrieved from the database
 		cookie['username'] = r[0].decode('hex')
 		expiration = datetime.datetime.now() + datetime.timedelta(days=36500)
+		#If the user has specified that this is NOT a session cookie, set expiration:
 		if(keep_loggedin == "TRUE"):
 			cookie['username']["expires"] = \
 			expiration.strftime("%a, %d-%b-%Y %H:%M:%S EST")
@@ -56,8 +58,6 @@ if EMAIL_REGEX.match(requested_username):
 				old['username']['expires']='Sun, 12 Nov 1995 00:00:00 GMT'
 
 		#Salt 'n' Hash the password using the stored salt to test it against the password in the database
-		import hashlib
-
 		salt = r[6]
 		#appends the salt to start of the password
 		requested_password = salt + requested_password
@@ -97,6 +97,7 @@ else:
 		#The username in the cookie is the DECODED hex retrieved from the database
 		cookie['username'] = r[0].decode('hex')
 		expiration = datetime.datetime.now() + datetime.timedelta(days=36500)
+		#If the user has specified that this is NOT a session cookie, set expiration:
 		if(keep_loggedin == "TRUE"):
 			cookie['username']["expires"] = \
 			expiration.strftime("%a, %d-%b-%Y %H:%M:%S EST")
@@ -112,8 +113,6 @@ else:
 				old['username']['expires']='Sun, 12 Nov 1995 00:00:00 GMT'
 
 		#Salt 'n' Hash the password using the stored salt to test it against the password in the database
-		import hashlib
-
 		salt = r[6]
 		#appends the salt to start of the password
 		requested_password = salt + requested_password
