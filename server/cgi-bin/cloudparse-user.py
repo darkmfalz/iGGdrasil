@@ -84,6 +84,31 @@ else:
 					<link rel="stylesheet" type="text/css" href="../main.css">
 					<link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon">
 					<link rel="icon" href="../img/favicon.ico" type="image/x-icon">
+					<script src="http://code.jquery.com/jquery-1.11.3.min.js">
+					</script>
+
+					<script>
+						function renderImage(file){
+							var reader = new FileReader();
+							reader.onload = function(event){
+								the_url = event.target.result
+								$('#some_container_div').html("<img src='" + the_url + "' />")
+							}
+							reader.readAsDataURL(file);
+						}
+
+						$(document).ready(function(){
+							document.getElementById('fileinput').addEventListener('change', function(){
+	    						var file = this.files[0];
+	    						// This code is only for demo ...
+	    						console.log("name : " + file.name);
+	    						console.log("size : " + file.size);
+	    						console.log("type : " + file.type);
+	    						console.log("date : " + file.lastModified);
+	    						renderImage(file)
+							}, false);
+						});
+					</script>
 				</head>
 			'''
 
@@ -99,7 +124,11 @@ else:
 
 			print '<h2>Your last name is: ' + lastname + '</h2>'
 
+			print '		<div id="some_container_div">'
 			print '		<img src="' + image + '"/>'
+			print '		</div>'
+
+			print '<input type="file" id="fileinput" />'
 
 			print '''
 					<p>Hello</p>
