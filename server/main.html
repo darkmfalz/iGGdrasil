@@ -69,6 +69,12 @@
 
 			}
 
+			firstnameinit();
+			lastnameinit();
+			usernameinit();
+			passwordinit();
+			emailinit();
+
 			//login the user
 			function login(){
 
@@ -106,7 +112,7 @@
 						console.log(data.username);
 						$("#username").val("");
 						$("#password").val("");
-						window.location.replace("./user/".concat(data.username));
+						window.location.replace("./users/".concat(data.username));
 
 					},
 
@@ -158,7 +164,7 @@
 							passwordinit();
 							emailinit();
 
-							window.location.replace("./user/".concat(data.username));
+							window.location.replace("./users/".concat(data.username));
 
 						},
 
