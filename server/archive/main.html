@@ -70,7 +70,7 @@
 			}
 
 			//login the user
-			function login(){
+			$("#loginButton").click(function(){
 
 				//get the username and password from the textbox
 				var username = $("#username").val();
@@ -82,8 +82,6 @@
 		        else {
             		var checked = "FALSE";
         		}
-        		console.log(username);
-        		console.log(password);
         		console.log(checked);
 
 				$.ajax({
@@ -106,6 +104,7 @@
 						console.log(data.username);
 						$("#username").val("");
 						$("#password").val("");
+						//window.location.replace("./user/".concat(data.username));
 						window.location.replace("./user/".concat(data.username));
 
 					},
@@ -120,9 +119,10 @@
 
 				});
 
-			}
+			});
 
-			function signup(){
+			//create user account
+			$("#createaccountButton").click(function(){
 
 				var username = $("#Susername").val();
 				var firstname = $("#firstname").val();
@@ -193,24 +193,8 @@
 
 				}
 
-			}
-
-			//On form submission...
-			//login
-			$("#login").submit(function(e){
-				login();
-				e.preventDefault();
-				return false;
 			});
 
-			//create user account
-			$("#signup").submit(function(e){
-				signup();
-				e.preventDefault();
-				return false;
-			});
-
-			//Focus in and focus out actions for the sign up boxes
 			$("#firstname").focus(function(){
 
 				if("First Name".localeCompare($("#firstname").val()) == 0){
@@ -322,15 +306,19 @@
 
 <body>
 	<div class="wrapper">
-		<h1 class="banner">
-			<a class="titlelink" class="bannerlink" href="/" title="Go to main page">
-				<div style="white-space: nowrap; padding-top: 0px; padding-bottom: 10px;">
-					<img src="img/Grammarnazilogo.png" style="vertical-align:middle">
-				</div>
-			</a>
+		<div class="inwrapper">
+			<h1>
+				<a id="titlelink" class="bannerlink" href="/main.html" title="Go to main page">
+					<div style="white-space: nowrap; padding-top: 0px; padding-bottom: 10px;">
+						<img src="img/cloudwhite.png" alt="cloudwhite.png" width=55 height=51 style="vertical-align:middle">
+						
+						<span>
+							CloudParse
+						</span>
+					</div>
+				</a>
 
-			<div class="logindiv">
-				<form action="" id="login">
+				<div id="login">
 					<table>
 						<tr>
 							<td>
@@ -374,21 +362,77 @@
 							</td>
 						</tr>
 					</table>
-				</form>
-			</div>
-		</h1>
+				</div>
+			</h1>
 
-		<div class="mainpage">
-			<div class="signupdiv">
-				<div class="sectiontitle" style="text-align: left;">
-					Sign Up
+			<div id="main">
+				<div id="info">
+					<div id="titlelite">
+						Parse with Adeeb.
+					</div>
+
+					<div id="infobody">
+						<table style="border-spacing: 10px;">
+							<tr>
+								<div class="infocell">
+									<td class="inforow">
+										<div class="infoimg" style="text-align: center; width: 55px">
+											<img src="img/seephotos.png" alt="seephotos.png" style="vertical-align:middle">
+										</div>
+									</td>
+
+									<td class="inforow">
+										<div class="infotxt">
+											<span style=""><b>See photos and updates</b> of Adeeb in your News Feed.</span>
+										</div>
+									</td>
+								</div>
+							</tr>
+
+							<tr>
+								<div class="infocell">
+									<td class="inforow">
+										<div class="infoimg" style="text-align: center; width: 55px">
+											<img src="img/sharenew.png" alt="sharenew.png" style="vertical-align:middle">
+										</div>
+									</td>
+
+									<td class="inforow">
+										<div class="infotxt">
+											<span style=""><b>Share what's new</b> with Adeeb.</span>
+										</div>
+									</td>
+								</div>
+							</tr>
+
+							<tr>
+								<td class="inforow">
+									<div class="infocell">
+										<div class="infoimg" style="text-align: center; width: 55px">
+											<img src="img/findmore.png" alt="findmore.png" style="vertical-align:middle">
+										</div>
+									</div>
+								</td>
+
+								<td class="inforow">
+									<div class="infotxt">
+										<span style=""><b>Find more</b> of what you're looking for with Adeeb Search.</span>
+									</div>
+								</td>
+							</tr>
+						</table>
+					</div>
 				</div>
 
-				<p style="padding-top: 20px; text-align: left;">
-					It's free until we turn evil!
-				</p>
+				<div id="signup">
+					<div id="title" style="text-align: left;">
+						Sign Up
+					</div>
 
-				<form action="" id="signup">
+					<p style="padding-top: 20px; text-align: left;">
+						It's free until we turn evil!
+					</p>
+
 					<table style="border-spacing: 10px;">
 						<tr>
 							<td>
@@ -426,7 +470,15 @@
 							</td>
 						</tr>
 					</table>
-				</form>
+				</div>
+
+				<!-- <form method="post" action="cgi-bin/server-login.py"> 
+					Name: <input name="requested_username" type=text size="30"/>
+					<br>
+					Pass: <input name="requested_password" type=text size="30"/>
+					<br>
+					<input type="submit"/> <input type="reset"/>
+				</form> -->
 			</div>
 		</div>
 	</div>
@@ -434,10 +486,10 @@
 	<div class="footer" xmlns:dc="http://purl.org/dc/elements/1.1/">
 		<p id="copyright" property="dc:rights">&copy;
   			<span property="dc:dateCopyrighted">2015</span>
+
   			<span property="dc:publisher">The Adeeb Everything Company</span>
 		</p>
 	</div>
-
 </body>
 
 </html>

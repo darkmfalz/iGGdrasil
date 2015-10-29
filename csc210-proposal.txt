@@ -1,25 +1,25 @@
-CloudParse
+GrammarNazi
 
-What is CloudParse?:
+What is GrammarNazi?:
 	Context-free grammars are at the heart of compiler design. As
 	such, being able to prototype, share, and test such grammars
 	quickly is an asset to any compiler designer. Currently,
 	though, there is no integrated platform to do this.
 	
-	Enter CloudParse. CloudParse will be a parse-tree
+	Enter GrammarNazi. GrammarNazi will be a parse-tree
 	visualization tool, with social networking elements. Users can 
 	create and save grammars by inputting the Extended Backus-Naur 
 	representation of their grammar. Once a grammar has been 
 	created, the user who created it can edit it at any time. 
 	However, anyone can see the grammar, and create inputs it. 
-	CloudParse then takes these inputs, sends them to the server 
+	GrammarNazi then takes these inputs, sends them to the server 
 	using AJAX, then parses them, generates a corresponding tree, 
 	and sends the tree back to the client using JSON. On top of 
 	this, users will be able to easily share their grammars with 
 	other users and comment on the grammars of others, to provide 
 	helpful feedback. 
 	
-	As such, CloudParse will be an integrated platform that allows 
+	As such, GrammarNazi will be an integrated platform that allows 
 	parse-tree visualization and the creation of a tighter 
 	compiler design community.
 
@@ -27,8 +27,8 @@ Who is the target audience?:
 	The target audience is, primarily, compiler designers -- 
 	professional, amateur, hobbyist, and others.
 	
-	However, CloudParse can also function as an educational tool. 
-	A secondary goal of CloudParse is to be accessible to students 
+	However, GrammarNazi can also function as an educational tool. 
+	A secondary goal of GrammarNazi is to be accessible to students 
 	unfamiliar with grammars and the nuances of parsing, with help 
 	pages and question threads where experience users can respond 
 	to any confusion.
@@ -43,11 +43,11 @@ How does it meet the minimum requirements?:
 	Users can delete their own grammars and accounts
 	All of the above is done using AJAX
 
-How does CloudParse go beyond the requirements?:
-	CloudParse's primary feature is its parse-tree visualization 
+How does GrammarNazi go beyond the requirements?:
+	GrammarNazi's primary feature is its parse-tree visualization 
 	and grammar sharing. As such, it will go beyond with quick 
 	tree graphics generation and a robust commenting system.
 	
-	Furthermore, CloudParse provides a platform for compiler 
+	Furthermore, GrammarNazi provides a platform for compiler 
 	design communities to connect, the likes of which doesn't 
 	currently exist.
