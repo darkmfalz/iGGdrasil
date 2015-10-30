@@ -1,4 +1,11 @@
 RewriteEngine	On
-RewriteRule		^$					/main.html
+
+RewriteCond		%{SCRIPT_FILENAME}	!-d
+RewriteCond		%{SCRIPT_FILENAME}	!-f
+
+RewriteCond		%{REQUEST_FILENAME} !-d
+RewriteRule		^(.*)/$ 			/$1										[R=301,L]
+
+RewriteRule		^$					/main
 RewriteRule		^main$				/main.html
 RewriteRule		^users/([^/]+)$		/cgi-bin/server-user.py?username=$1
