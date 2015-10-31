@@ -25,7 +25,7 @@ conn = sqlite3.connect('users.db')
 c = conn.cursor()
 
 #Creates a new SESSION cookie for the current user
-rand = os.urandom(64)
+rand = os.urandom(16)
 sessionid = rand.encode('hex')
 
 cookie = Cookie.SimpleCookie()
@@ -84,6 +84,17 @@ print "Content-type: text/html"
 if proceed:
 	#inserts the account values into the database, but it encodes them in hex first, to prevent SQL injection
 	c.execute('insert into accounts values (?, ?, ?, ?, ?, ?, ?)', [requested_username.encode('hex'), requested_firstname.encode('hex'), requested_lastname.encode('hex'), "../img/users/v.jpg".encode('hex'), requested_email.encode('hex'), requested_password, salt])
+	
+	#Make sure that the sessionid is unique
+	test = True
+	while(test):
+		test = False
+		for r in c.execute('select * from loggedin'):
+			if r[0] == sessionid:
+				test = True
+				rand = os.urandom(16)
+				sessionid = rand.encode('hex')
+
 	c.execute('insert into loggedin values (?, ?)', [sessionid, requested_username.encode('hex')])
 	conn.commit()
 
