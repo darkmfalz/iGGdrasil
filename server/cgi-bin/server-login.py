@@ -37,10 +37,12 @@ if EMAIL_REGEX.match(requested_username):
 
 	#Checks over the accounts for the given email -- the email is encoded in hex, to prevent SQL injection
 	for r in c.execute('select * from accounts where email=?', [requested_username.encode('hex')]):
+		rand = os.urandom(64)
+		sessionid = rand.encode('hex')
 		#Create a new cookie from the username
 		cookie = Cookie.SimpleCookie()
 		#The username in the cookie is the DECODED hex retrieved from the database
-		cookie['username'] = r[0].decode('hex')
+		cookie['username'] = sessionid
 		expiration = datetime.datetime.now() + datetime.timedelta(days=36500)
 		#If the user has specified that this is NOT a session cookie, set expiration:
 		if(keep_loggedin == "TRUE"):
@@ -56,6 +58,8 @@ if EMAIL_REGEX.match(requested_username):
 			old = Cookie.SimpleCookie(stored_cookie_string)
 			if 'username' in old:
 				old['username']['expires']='Sun, 12 Nov 1995 00:00:00 GMT'
+				c.execute('delete from loggedin where sessionid=?', [old['username'].value])
+				conn.commit()
 
 		#Salt 'n' Hash the password using the stored salt to test it against the password in the database
 		salt = r[6]
@@ -78,6 +82,9 @@ if EMAIL_REGEX.match(requested_username):
 			data['firstname'] = firstname
 			data['lastname'] = lastname
 			data['image'] = image
+
+			c.execute('insert into loggedin values (?, ?)', [sessionid, requested_username.encode('hex')])
+			conn.commit()
 
 			#Return the cookie and JSON
 			print cookie
@@ -92,10 +99,12 @@ else:
 
 	#Checks over the accounts for the given username -- the username is encoded in hex, to prevent SQL injection
 	for r in c.execute('select * from accounts where username=?', [requested_username.encode('hex')]):
+		rand = os.urandom(64)
+		sessionid = rand.encode('hex')
 		#Create a new cookie from the username
 		cookie = Cookie.SimpleCookie()
 		#The username in the cookie is the DECODED hex retrieved from the database
-		cookie['username'] = r[0].decode('hex')
+		cookie['username'] = sessionid
 		expiration = datetime.datetime.now() + datetime.timedelta(days=36500)
 		#If the user has specified that this is NOT a session cookie, set expiration:
 		if(keep_loggedin == "TRUE"):
@@ -111,6 +120,8 @@ else:
 			old = Cookie.SimpleCookie(stored_cookie_string)
 			if 'username' in old:
 				old['username']['expires']='Sun, 12 Nov 1995 00:00:00 GMT'
+				c.execute('delete from loggedin where sessionid=?', [old['username'].value])
+				conn.commit()
 
 		#Salt 'n' Hash the password using the stored salt to test it against the password in the database
 		salt = r[6]
@@ -133,6 +144,9 @@ else:
 			data['firstname'] = firstname
 			data['lastname'] = lastname
 			data['image'] = image
+
+			c.execute('insert into loggedin values (?, ?)', [sessionid, requested_username.encode('hex')])
+			conn.commit()
 
 			#Return the cookie and JSON
 			print cookie

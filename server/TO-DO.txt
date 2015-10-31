@@ -1,6 +1,0 @@
-TO-DO:
-
-1. Get cookie authentication to work
-	a. Should I just redirect to another page?
-2. Implement a comment system
-3. Design a "news feed" for CloudParse

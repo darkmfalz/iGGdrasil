@@ -34,8 +34,8 @@ def badLogin():
 			Bad Login
 		</title>
 		<link rel="stylesheet" type="text/css" href="../main.css">
-		<link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon">
-		<link rel="icon" href="../img/favicon.ico" type="image/x-icon">
+		<link rel="shortcut icon" href="../img/icons/favicon.ico" type="image/x-icon">
+		<link rel="icon" href="../img/icons/favicon.ico" type="image/x-icon">
 		
 		<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 		<script type="text/javascript">
@@ -60,8 +60,11 @@ else:
 	cookie = Cookie.SimpleCookie(stored_cookie_string)
 	#If the cookie is 'username'
 	if 'username' in cookie:
+		cookieUsername = ""
+		for r in c.execute('select * from loggedin where sessionid=?', [cookie['username'].value]):
+			cookieUsername = r[1].decode('hex')
 		#If the username submitted in the form is on the cookie
-		if(username == cookie['username'].value):
+		if(username == cookieUsername):
 			#Then, find the user and retrieve the values
 			#NOTE: this script doesn't really DO anything if the user doesn't exist and HAS a cookie with a matching username
 			for r in c.execute('select * from accounts where username=?', [username.encode('hex')]):
@@ -79,11 +82,11 @@ else:
 			<html>
 			<head>
 				<title>
-						Profile: ''' + username + '''
+						''' + username + ''' | GrammarNazi
 				</title>
 				<link rel="stylesheet" type="text/css" href="../main.css">
-				<link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon">
-				<link rel="icon" href="../img/favicon.ico" type="image/x-icon">
+				<link rel="shortcut icon" href="../img/icons/favicon.ico" type="image/x-icon">
+				<link rel="icon" href="../img/icons/favicon.ico" type="image/x-icon">
 				
 				<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 				<script>
@@ -91,7 +94,7 @@ else:
 						var reader = new FileReader();
 						reader.onload = function(event){
 							the_url = event.target.result
-							$('#some_container_div').html("<img src='" + the_url + "' />")
+							$('#profilepic').html("<img src='" + the_url + "' />")
 						}
 						reader.readAsDataURL(file);
 					}
@@ -99,7 +102,6 @@ else:
 					$(document).ready(function(){
 						document.getElementById('fileinput').addEventListener('change', function(){
 							var file = this.files[0];
-							// This code is only for demo ...
 							console.log("name : " + file.name);
 							console.log("size : " + file.size);
 							console.log("type : " + file.type);
@@ -127,11 +129,15 @@ else:
 						Your last name is: ''' + lastname + '''
 					</h2>
 
-					<div id="some_container_div">
+					<div id="profilepic">
 						<img src= ''' + image + ''' />
 					</div>
 
-					<input type="file" id="fileinput" />
+					<form enctype="multipart/form-data" action="/img/users" method="post">
+						<input id="image-file" type="file" />
+					</form>
+
+					<input id="fileinput" type="file" />
 
 					<p>Hello</p>
 

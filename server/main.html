@@ -6,30 +6,19 @@
 	<meta name="author" content="Adeeb Sheikh">
 
 	<title>
-		CloudParse
+		GrammarNazi
 	</title>
 
 	<link rel="stylesheet" type="text/css" href="./main.css">
 
-	<link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
-	<link rel="icon" href="./img/favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="./img/icons/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="./img/icons/favicon.ico" type="image/x-icon">
 
 	<script src="http://code.jquery.com/jquery-1.11.3.min.js">
 	</script>
 
 	<script type="text/javascript">
 		$(document).ready(function(){
-
-			function getCookie(cname) {
-			    var name = cname + "=";
-			    var ca = document.cookie.split(';');
-			    for(var i=0; i<ca.length; i++) {
-			        var c = ca[i];
-			        while (c.charAt(0)==' ') c = c.substring(1);
-			        if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
-			    }
-			    return "";
-			}
 
 			$("#username").focus();
 
@@ -112,7 +101,7 @@
 						console.log(data.username);
 						$("#username").val("");
 						$("#password").val("");
-						window.location.replace("./users/".concat(data.username));
+						window.location.assign("./users/".concat(data.username));
 
 					},
 
@@ -164,7 +153,7 @@
 							passwordinit();
 							emailinit();
 
-							window.location.replace("./users/".concat(data.username));
+							window.location.assign("./users/".concat(data.username));
 
 						},
 
@@ -328,10 +317,10 @@
 
 <body>
 	<div class="wrapper">
-		<h1 class="banner">
+		<div class="banner">
 			<a class="titlelink" class="bannerlink" href="/" title="Go to main page">
 				<div style="white-space: nowrap; padding-top: 0px; padding-bottom: 10px;">
-					<img src="img/Grammarnazilogo.png" style="vertical-align:middle">
+					<img src="img/icons/Grammarnazilogo.png" style="vertical-align:middle">
 				</div>
 			</a>
 
@@ -374,7 +363,7 @@
 								</div>
 							</td>
 							<td>
-								<a class="bannerlink"href="/img/Grammarnazilogo.png">
+								<a class="bannerlink"href="/img/icons/Grammarnazilogo.png">
 									Forgot your password?
 								</a>
 							</td>
@@ -382,7 +371,7 @@
 					</table>
 				</form>
 			</div>
-		</h1>
+		</div>
 
 		<div class="mainpage">
 			<div class="signupdiv">

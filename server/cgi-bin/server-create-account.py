@@ -25,8 +25,11 @@ conn = sqlite3.connect('users.db')
 c = conn.cursor()
 
 #Creates a new SESSION cookie for the current user
+rand = os.urandom(64)
+sessionid = rand.encode('hex')
+
 cookie = Cookie.SimpleCookie()
-cookie['username'] = requested_username
+cookie['username'] = sessionid
 cookie['username']['path'] = "/"
 
 #Checks if there already is a user cookie in the browser
@@ -38,13 +41,15 @@ else:
 	old = Cookie.SimpleCookie(stored_cookie_string)
 	if 'username' in old:
 		old['username']['expires']='Thu, 01 Jan 1970 00:00:00 GMT'
+		c.execute('delete from loggedin where sessionid=?', [old['username'].value])
+		conn.commit()
 
 data = {}
 
 data['username'] = requested_username
 data['firstname'] = requested_firstname
 data['lastname'] = requested_lastname
-data['image'] = "../img/v.jpg"
+data['image'] = "../img/users/v.jpg"
 
 #Salt 'n' Hash the password
 
@@ -78,7 +83,8 @@ print "Content-type: text/html"
 
 if proceed:
 	#inserts the account values into the database, but it encodes them in hex first, to prevent SQL injection
-	c.execute('insert into accounts values (?, ?, ?, ?, ?, ?, ?)', [requested_username.encode('hex'), requested_firstname.encode('hex'), requested_lastname.encode('hex'), "../img/v.jpg".encode('hex'), requested_email.encode('hex'), requested_password, salt])
+	c.execute('insert into accounts values (?, ?, ?, ?, ?, ?, ?)', [requested_username.encode('hex'), requested_firstname.encode('hex'), requested_lastname.encode('hex'), "../img/users/v.jpg".encode('hex'), requested_email.encode('hex'), requested_password, salt])
+	c.execute('insert into loggedin values (?, ?)', [sessionid, requested_username.encode('hex')])
 	conn.commit()
 
 	#returns the cookie and json
