@@ -1,0 +1,50 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+
+html, body{
+	height: 100%;
+}
+
+	.wrapper{
+		min-height:100%;
+		overflow: auto;
+		/*padding-bottom: 100px;*/
+	}
+
+		.banner{
+			margin: 0 auto;
+			padding: 0;
+			width: 100%;
+			overflow: hidden;
+			background-color: rgb(255, 0, 0);
+			display: flex;
+			justify-content: space-between;
+			border-color: rgb(255, 0, 0);
+			border-style: solid;
+			border-width: 10px 0px 0px 0px;
+		}
+
+			.logindiv{
+				text-decoration: none;
+				color: black;
+			}
+
+				.bannerlink{
+					text-decoration: inherit;
+					color: inherit;
+				}
+
+					.bannerlink:hover{
+						text-decoration: underline;
+					}
+
+	.footer{
+		/*Sticky footer CSS courtesy of: http://www.cssstickyfooter.com/;*/
+		background-color: white;
+		text-align: center;
+		margin-top: -50px;
+		height: 50px;
+		clear:both;
+	}
