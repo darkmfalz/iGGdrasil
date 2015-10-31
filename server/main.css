@@ -5,6 +5,7 @@
 
 html, body{
 	height: 100%;
+	font-family: "Arial", Helvetica, sans-serif;
 }
 
 	.wrapper{
@@ -18,27 +19,46 @@ html, body{
 			padding: 0;
 			width: 100%;
 			overflow: hidden;
-			background-color: rgb(255, 0, 0);
+			background-color: rgb(0, 0, 0);
 			display: flex;
 			justify-content: space-between;
-			border-color: rgb(255, 0, 0);
-			border-style: solid;
-			border-width: 10px 0px 0px 0px;
 		}
 
-			.logindiv{
+			.titlelink{
+				padding-left: 15px;
 				text-decoration: none;
-				color: black;
+				color: rgb(255, 0, 0);
+				font-family: "Impact", Charcoal, sans-serif;
+				font-size: 200%;
 			}
 
-				.bannerlink{
-					text-decoration: inherit;
-					color: inherit;
+			.logindiv{
+				padding-top: 35px;
+				padding-right: 15px;
+				text-decoration: none;
+				color: rgb(255, 0, 0);
+			}
+
+				.logintable{
+					display: table;
+					border-spacing: 10px 2px;
+					border-color: gray;
+					border-collapse: separate;
 				}
 
-					.bannerlink:hover{
-						text-decoration: underline;
+					.bannerlink{
+						text-decoration: inherit;
+						color: inherit;
 					}
+
+						.bannerlink:hover{
+							text-decoration: underline;
+						}
+
+		.mainpage{
+			display: flex;
+			justify-content: space-around;
+		}
 
 	.footer{
 		/*Sticky footer CSS courtesy of: http://www.cssstickyfooter.com/;*/
