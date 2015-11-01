@@ -1,5 +1,5 @@
 TO-DO:
 
-1. Make cookies secure: http://stackoverflow.com/questions/20314921/how-to-properly-and-securely-handle-cookies-and-sessions-in-pythons-flask
-2. Implement a comment system
-3. Design a "news feed" for GrammarNazi
+1. Implement a comment system
+2. Design a "news feed" for GrammarNazi
+3. Handle dangling login database (when session expires, log in not removed from database -- also, expire login after X amount of time, based on session length)
