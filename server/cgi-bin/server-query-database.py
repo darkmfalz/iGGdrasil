@@ -41,3 +41,7 @@ while True:
 		for r in c.execute('select * from accounts where email=?', [query.encode('hex')]):
 			print "Username:\t" + r[0].decode('hex') + "\nFirst Name:\t" + r[1].decode('hex') + "\nLast Name:\t" + r[2].decode('hex') + "\nProfile Image:\t" + r[3].decode('hex') + "\nEmail Address:\t" + r[4].decode('hex') + "\nPassword Hash:\t" + r[5] + "\nPassword Salt:\t" + r[6]
 			print
+	elif(query == "loggedin"):
+		for r in c.execute('select * from loggedin'):
+			print "Username:\t" + r[1].decode('hex') + "\nSessionID:\t" + r[0]
+			print
