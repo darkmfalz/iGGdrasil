@@ -136,10 +136,6 @@ else:
 
 						$("#logout").submit(function(e){
 						
-							function delete_cookie(name){
-								document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-							}
-
 							$.ajax({
 
 								url: "/cgi-bin/server-logout.py",
@@ -152,8 +148,6 @@ else:
 								datatype: "json",
 
 								success: function(data){
-
-									delete_cookie("username");
 
 									window.location.assign("../login");
 

@@ -27,8 +27,10 @@ else:
 	old = Cookie.SimpleCookie(stored_cookie_string)
 	if 'username' in old:
 		old['username']['expires']='12-Nov-1995 00:00:00 GMT'
+		old['username']['path'] = "/"
 		cookie = Cookie.SimpleCookie()
 		cookie['username'] = "dil"
+		cookie['username']['path'] = "/"
 		c.execute('delete from loggedin where sessionid=?', [old['username'].value])
 		conn.commit()
 
