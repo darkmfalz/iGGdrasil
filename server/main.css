@@ -11,7 +11,7 @@ html, body{
 	.wrapper{
 		min-height:100%;
 		overflow: auto;
-		/*padding-bottom: 100px;*/
+		padding-bottom: 50px;
 	}
 
 		.banner{
@@ -55,11 +55,31 @@ html, body{
 							text-decoration: underline;
 						}
 
+					.profilecrop{
+						width: 100px;
+						height: 100px;
+						overflow: hidden;
+					}
+
+					.profilecrop img{
+						height: 250px;
+					}
+
 		.mainpage{
 			display: flex;
 			justify-content: space-around;
 			padding-top: 20px;
 		}
+
+			.bigprofilecrop{
+				width: 250px;
+				height: 250px;
+				overflow: hidden;
+			}
+
+			.bigprofilecrop img{
+				height: 250px;
+			}
 
 	.footer{
 		/*Sticky footer CSS courtesy of: http://www.cssstickyfooter.com/;*/

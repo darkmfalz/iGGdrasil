@@ -90,16 +90,41 @@ else:
 				
 				<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 				<script>
-					function renderImage(file){
-						var reader = new FileReader();
-						reader.onload = function(event){
-							the_url = event.target.result
-							$('#profilepic').html("<img src='" + the_url + "' />")
-						}
-						reader.readAsDataURL(file);
-					}
-
 					$(document).ready(function(){
+
+						function shiftProfile(the_url){
+							var theImage = new Image();
+							theImage.src = the_url;
+							var imageHeightRatio = 250/theImage.height;
+
+							if(theImage.width > theImage.height){
+								var imageShift = (theImage.width*imageHeightRatio-250)/2;
+
+								console.log(theImage.src);
+								console.log(theImage.height);
+								console.log(imageShift);
+
+								$("#profilepic").attr("src", the_url);
+								$("#profilepic").attr("style", "margin-left: -" + imageShift + "px;");
+							}
+							if(theImage.width < theImage.height){
+								var imageShift = (250-theImage.width*imageHeightRatio)/2;
+								$("#profilepic").attr("src", the_url);
+								$("#profilepic").attr("style", "margin-left: " + imageShift + "px;");
+							}
+						}
+
+						shiftProfile($('#profilepic').attr('src'));
+
+						function renderImage(file){
+							var reader = new FileReader();
+							reader.onload = function(event){
+								the_url = event.target.result;
+								shiftProfile(the_url);
+							}
+							reader.readAsDataURL(file);
+						}
+
 						document.getElementById('fileinput').addEventListener('change', function(){
 							var file = this.files[0];
 							console.log("name : " + file.name);
@@ -113,41 +138,47 @@ else:
 				</head>
 				
 				<body>
-					<h1>
-						My heading
-					</h1>
+					<div class="wrapper">
+						<div class="banner">
+							<a class="titlelink" class="bannerlink" href="/" title="Go to main page">
+								<div style="white-space: nowrap; padding-top: 10px; padding-bottom: 10px;">
+									<img src="../img/icons/grammar-nazi-circle.png" style="vertical-align:middle" width=100>
+									<img src="../img/icons/redtitle.png" style="vertical-align:middle" height=50>
+								</div>
+							</a>
+						</div>
 
-					<h2>
-						''' + username + '''
-					</h2>
+						<div class="mainpage">
+							<div class="profile">
+								<h1>
+									''' + username + '''
+								</h1>
 
-					<h2>
-						Your first name is: ''' + firstname + '''
-					</h2>
+								<h2>
+									''' + firstname + ' ' + lastname + '''
+								</h2>
 
-					<h2>
-						Your last name is: ''' + lastname + '''
-					</h2>
+								<div class="bigprofilecrop">
+									<img id="profilepic" src="../img/users/sad-batman.jpg" />
+								</div>
 
-					<div id="profilepic">
-						<img src= ''' + image + ''' />
+								<!-- <form enctype="multipart/form-data" action="/img/users" method="post">
+									<input id="image-file" type="file" />
+								</form> -->
+
+								<input id="fileinput" type="file" />
+
+							</div>
+						</div>
 					</div>
 
-					<form enctype="multipart/form-data" action="/img/users" method="post">
-						<input id="image-file" type="file" />
-					</form>
-
-					<input id="fileinput" type="file" />
-
-					<p>Hello</p>
-
-					<h2>
-						My other sub-heading
-					</h2>
-
-					<p id="myLine">a new line</p>
-
-					<p>another one</p>
+					<div class="footer" xmlns:dc="http://purl.org/dc/elements/1.1/">
+						<img src="../img/icons/hr.png" style="vertical-align:middle">
+						<p id="copyright" property="dc:rights">&copy;
+							<span property="dc:dateCopyrighted">2015</span>
+							<span property="dc:publisher">Adeeb Sheikh</span>
+						</p>
+					</div>
 				</body>
 			</html>'''
 		else:
