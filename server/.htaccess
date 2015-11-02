@@ -8,4 +8,5 @@ RewriteRule		^(.*)/$ 			/$1										[R=301,L]
 
 RewriteRule		^$					/main
 RewriteRule		^main$				/main.html
+RewriteRule		^login$				/login.html
 RewriteRule		^users/([^/]+)$		/cgi-bin/server-user.py?username=$1

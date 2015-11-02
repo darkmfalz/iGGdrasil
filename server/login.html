@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="author" content="Adeeb Sheikh">
+
+	<title>
+		Log In or Sign Up | GrammarNazi
+	</title>
+
+	<link rel="stylesheet" type="text/css" href="./main.css">
+
+	<link rel="shortcut icon" href="./img/icons/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="./img/icons/favicon.ico" type="image/x-icon">
+
+	<script src="http://code.jquery.com/jquery-1.11.3.min.js">
+	</script>
+
+	<script type="text/javascript">
+		$.ajax({
+
+			url: "/cgi-bin/server-authenticate.py",
+
+			data: {
+			},
+
+			type: "GET",
+
+			dataType: "json",
+
+			success: function(data){
+
+				console.log("Currently logged in as:");
+				console.log(data.username);
+				window.location.assign("./");
+
+			},
+
+			error: function(){
+
+				console.log("Not logged in.");
+
+			}
+
+		});
+
+		$(document).ready(function(){
+
+			$("#username").focus();
+
+			//the re-initialization fields for the 'create account' textboxes
+			function firstnameinit(){
+
+				$("#firstname").val("First Name");
+				$("#firstname").css("color", "gray");
+
+			}
+
+			function lastnameinit(){
+
+				$("#lastname").val("Last Name");
+				$("#lastname").css("color", "gray");
+
+			}
+
+			function usernameinit(){
+
+				$("#Susername").val("User Name");
+				$("#Susername").css("color", "gray");
+
+			}
+
+			function passwordinit(){
+
+				$("#Spassword").val("Password");
+				$("#Spassword").css("color", "gray");
+
+			}
+
+			function emailinit(){
+
+				$("#email").val("Email Address");
+				$("#email").css("color", "gray");
+
+			}
+
+			firstnameinit();
+			lastnameinit();
+			usernameinit();
+			passwordinit();
+			emailinit();
+
+			//login the user
+			function login(){
+
+				//get the username and password from the textbox
+				var username = $("#username").val();
+				var password = $("#password").val();
+
+				if (document.getElementById('persist_box').checked) {
+		            var checked = "TRUE";
+		        } 
+		        else {
+            		var checked = "FALSE";
+        		}
+        		console.log(username);
+        		console.log(password);
+        		console.log(checked);
+
+				$.ajax({
+
+					url: "/cgi-bin/server-login.py",
+
+					data: {
+						requested_username: username,
+						requested_password: password,
+						keep_loggedin: checked
+					},
+
+					type: "POST",
+
+					dataType: "json",
+
+					success: function(data){
+
+						console.log("Successfully logged in as:");
+						console.log(data.username);
+						$("#username").val("");
+						$("#password").val("");
+						window.location.assign("./users/".concat(data.username));
+
+					},
+
+					error: function(){
+
+						alert("There was a problem: invalid username/password combination.");
+						$("#username").val("");
+						$("#password").val("");
+
+					}
+
+				});
+
+			}
+
+			function signup(){
+
+				var username = $("#Susername").val();
+				var firstname = $("#firstname").val();
+				var lastname = $("#lastname").val();
+				var password = $("#Spassword").val();
+				var email = $("#email").val();
+
+				if(/[a-zA-z0-9_\-\.]+@[a-zA-z0-9_\-\.]+\.[a-zA-z0-9_\-\.]+/.test(email)){
+
+					$.ajax({
+
+						url: "/cgi-bin/server-create-account.py",
+
+						data: {
+							requested_username: username,
+							requested_firstname: firstname,
+							requested_lastname: lastname,
+							requested_password: password,
+							requested_email: email
+						},
+
+						type: "POST",
+
+						dataType: "json",
+
+						success: function(data){
+
+							console.log("Successfully created account:");
+							console.log(data.username);
+							firstnameinit();
+							lastnameinit();
+							usernameinit();
+							passwordinit();
+							emailinit();
+
+							window.location.assign("./users/".concat(data.username));
+
+						},
+
+						error: function(){
+
+							alert("There was a problem: the username is taken, or the email is taken/in an invalid format.");
+							firstnameinit();
+							lastnameinit();
+							usernameinit();
+							passwordinit();
+							emailinit();
+
+						}
+
+					});
+
+				}
+				else{
+
+					function invalidEmail(){
+
+						alert("There was a problem: the email is in an invalid format.");
+						firstnameinit();
+						lastnameinit();
+						usernameinit();
+						passwordinit();
+						emailinit();
+
+					}
+
+					invalidEmail();
+
+				}
+
+			}
+
+			//On form submission...
+			//login
+			$("#login").submit(function(e){
+				login();
+				e.preventDefault();
+				return false;
+			});
+
+			//create user account
+			$("#signup").submit(function(e){
+				signup();
+				e.preventDefault();
+				return false;
+			});
+
+			//Focus in and focus out actions for the sign up boxes
+			$("#firstname").focus(function(){
+
+				if("First Name".localeCompare($("#firstname").val()) == 0){
+
+					$("#firstname").val("");
+					$("#firstname").css("color", "black");
+
+				}
+
+			});
+
+			$("#firstname").focusout(function(){
+
+				if("".localeCompare($("#firstname").val()) == 0){
+
+					firstnameinit();
+
+				}
+
+			});
+
+			$("#lastname").focus(function(){
+
+				if("Last Name".localeCompare($("#lastname").val()) == 0){
+
+					$("#lastname").val("");
+					$("#lastname").css("color", "black");
+
+				}
+				
+			});
+
+			$("#lastname").focusout(function(){
+
+				if("".localeCompare($("#lastname").val()) == 0){
+
+					lastnameinit();
+
+				}
+
+			});
+
+			$("#Susername").focus(function(){
+
+				if("User Name".localeCompare($("#Susername").val()) == 0){
+
+					$("#Susername").val("");
+					$("#Susername").css("color", "black");
+
+				}
+				
+			});
+
+			$("#Susername").focusout(function(){
+
+				if("".localeCompare($("#Susername").val()) == 0){
+
+					usernameinit();
+
+				}
+
+			});
+
+			$("#Spassword").focus(function(){
+
+				if("Password".localeCompare($("#Spassword").val()) == 0){
+
+					$("#Spassword").val("");
+					$("#Spassword").css("color", "black");
+
+				}
+				
+			});
+
+			$("#Spassword").focusout(function(){
+
+				if("".localeCompare($("#Spassword").val()) == 0){
+
+					passwordinit();
+
+				}
+
+			});
+
+			$("#email").focus(function(){
+
+				if("Email Address".localeCompare($("#email").val()) == 0){
+
+					$("#email").val("");
+					$("#email").css("color", "black");
+
+				}
+				
+			});
+
+			$("#email").focusout(function(){
+
+				if("".localeCompare($("#email").val()) == 0){
+
+					emailinit();
+
+				}
+
+			});
+
+		});
+	</script>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="banner">
+			<a class="titlelink" class="bannerlink" href="/" title="Go to main page">
+				<div style="white-space: nowrap; padding-top: 10px; padding-bottom: 10px;">
+					<img src="img/icons/grammar-nazi-circle.png" style="vertical-align:middle" width=100>
+					<img src="img/icons/redtitle.png" style="vertical-align:middle" height=50>
+				</div>
+			</a>
+
+			<div class="logindiv">
+				<form action="" id="login">
+					<table class="logintable">
+						<tr>
+							<td>
+								Username or Email
+							</td>
+
+							<td>
+								Password
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+								<input type="text" id="username"/>
+							</td>
+
+							<td>
+								<input type="password" id="password"/>
+							</td>
+
+							<td>
+								<button id="loginButton">
+									Log In
+								</button>
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+								<div>
+									<input type="checkbox" id="persist_box" checked="1"/>
+									<label for="persist_box">
+										Keep me logged in
+									</label>
+								</div>
+							</td>
+							<td>
+								<a class="bannerlink"href="/img/icons/Grammarnazilogo.png">
+									Forgot your password?
+								</a>
+							</td>
+						</tr>
+					</table>
+				</form>
+			</div>
+		</div>
+
+		<div class="mainpage">
+			<div class="signupdiv">
+				<div class="sectiontitle" style="text-align: left;">
+					Sign Up
+				</div>
+
+				<p style="padding-top: 20px; text-align: left;">
+					It's free until we invade Poland!
+				</p>
+
+				<form action="" id="signup">
+					<table style="border-spacing: 10px;">
+						<tr>
+							<td>
+								<input id="firstname" type=text size="30" value="First Name"/>
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+								<input id="lastname" type=text size="30" value="Last Name"/>
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+								<input id="Susername" type=text size="30" value="User Name"/>
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+								<input id="Spassword" type=password size="30" value="Password"/>
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+								<input id="email" type=text size="30" value="Email Address" autocomplete="off"/>
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+								<button id="createaccountButton">Sign Up</button>
+							</td>
+						</tr>
+					</table>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="footer" xmlns:dc="http://purl.org/dc/elements/1.1/">
+		<img src="img/icons/hr.png" style="vertical-align:middle">
+		<p id="copyright" property="dc:rights">&copy;
+			<span property="dc:dateCopyrighted">2015</span>
+			<span property="dc:publisher">Adeeb Sheikh</span>
+		</p>
+	</div>
+
+</body>
+
+</html>

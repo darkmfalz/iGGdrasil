@@ -83,7 +83,7 @@ print "Content-type: text/html"
 
 if proceed:
 	#inserts the account values into the database, but it encodes them in hex first, to prevent SQL injection
-	c.execute('insert into accounts values (?, ?, ?, ?, ?, ?, ?)', [requested_username.encode('hex'), requested_firstname.encode('hex'), requested_lastname.encode('hex'), "../img/users/v.jpg".encode('hex'), requested_email.encode('hex'), requested_password, salt])
+	c.execute('insert into accounts values (?, ?, ?, ?, ?, ?, ?)', [requested_username.encode('hex'), requested_firstname.encode('hex'), requested_lastname.encode('hex'), "./img/users/v.jpg".encode('hex'), requested_email.encode('hex'), requested_password, salt])
 	
 	#Make sure that the sessionid is unique
 	test = True
@@ -99,6 +99,7 @@ if proceed:
 	conn.commit()
 
 	#returns the cookie and json
+	print old
 	print cookie
 	print
 	print json.dumps(data)

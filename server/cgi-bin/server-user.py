@@ -133,53 +133,98 @@ else:
 							console.log("date : " + file.lastModified);
 							renderImage(file)
 						}, false);
+
+						$("#logout").submit(function(e){
+						
+							function delete_cookie(name){
+								document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+							}
+
+							$.ajax({
+
+								url: "/cgi-bin/server-logout.py",
+
+								data: {
+								},
+
+								type: "POST",
+
+								datatype: "json",
+
+								success: function(data){
+
+									delete_cookie("username");
+
+									window.location.assign("../login");
+
+								},
+
+								error: function(){
+
+									console.log("Error logging out.");
+
+								}
+
+							});
+
+							e.preventDefault();
+							return false;
+						});
 					});
-					</script>
-				</head>
+				</script>
+			</head>
 				
-				<body>
-					<div class="wrapper">
-						<div class="banner">
-							<a class="titlelink" class="bannerlink" href="/" title="Go to main page">
-								<div style="white-space: nowrap; padding-top: 10px; padding-bottom: 10px;">
-									<img src="../img/icons/grammar-nazi-circle.png" style="vertical-align:middle" width=100>
-									<img src="../img/icons/redtitle.png" style="vertical-align:middle" height=50>
-								</div>
-							</a>
-						</div>
-
-						<div class="mainpage">
-							<div class="profile">
-								<h1>
-									''' + username + '''
-								</h1>
-
-								<h2>
-									''' + firstname + ' ' + lastname + '''
-								</h2>
-
-								<div class="bigprofilecrop">
-									<img id="profilepic" src="../img/users/sad-batman.jpg" />
-								</div>
-
-								<!-- <form enctype="multipart/form-data" action="/img/users" method="post">
-									<input id="image-file" type="file" />
-								</form> -->
-
-								<input id="fileinput" type="file" />
-
+			<body>
+				<div class="wrapper">
+					<div class="banner">
+						<a class="titlelink" class="bannerlink" href="/" title="Go to main page">
+							<div style="white-space: nowrap; padding-top: 10px; padding-bottom: 10px;">
+								<img src="../img/icons/grammar-nazi-circle.png" style="vertical-align:middle" width=100>
+								<img src="../img/icons/redtitle.png" style="vertical-align:middle" height=50>
 							</div>
+						</a>
+
+						<div class="logindiv">
+							<form action="" id="logout">
+								<button id="logoutbutton">
+									Log Out
+								</button>
+							</form>
 						</div>
 					</div>
 
-					<div class="footer" xmlns:dc="http://purl.org/dc/elements/1.1/">
-						<img src="../img/icons/hr.png" style="vertical-align:middle">
-						<p id="copyright" property="dc:rights">&copy;
-							<span property="dc:dateCopyrighted">2015</span>
-							<span property="dc:publisher">Adeeb Sheikh</span>
-						</p>
+					<div class="mainpage">
+						<div class="profile">
+							<h1>
+								''' + username + '''
+							</h1>
+
+							<h2>
+								''' + firstname + ' ' + lastname + '''
+							</h2>
+
+							<div class="bigprofilecrop">
+								<img id="profilepic" src=".''' + image + '''" />
+							</div>
+
+							<!-- <form enctype="multipart/form-data" action="/img/users" method="post">
+								<input id="image-file" type="file" />
+							</form> -->
+
+							<input id="fileinput" type="file" />
+
+						</div>
 					</div>
-				</body>
-			</html>'''
+				</div>
+
+				<div class="footer" xmlns:dc="http://purl.org/dc/elements/1.1/">
+					<img src="../img/icons/hr.png" style="vertical-align:middle">
+					<p id="copyright" property="dc:rights">&copy;
+						<span property="dc:dateCopyrighted">2015</span>
+						<span property="dc:publisher">Adeeb Sheikh</span>
+					</p>
+				</div>
+			</body>
+		</html>'''
 		else:
 			badLogin()

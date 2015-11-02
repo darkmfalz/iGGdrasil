@@ -27,11 +27,11 @@ else:
 	cookie = Cookie.SimpleCookie(stored_cookie_string)
 	if 'username' in cookie:
 		requested_username = ""
-		for r in c.execute('select * from loggedin where sessionid=?', [old['username'].value]):
+		for r in c.execute('select * from loggedin where sessionid=?', [cookie['username'].value]):
 			requested_username = r[1]
 
 		#Checks over the accounts for the given username -- the username is encoded in hex, to prevent SQL injection
-		for r in c.execute('select * from accounts where username=?', [requested_username.encode('hex')]):
+		for r in c.execute('select * from accounts where username=?', [requested_username]):
 
 			username = r[0].decode('hex')
 			firstname = r[1].decode('hex')
