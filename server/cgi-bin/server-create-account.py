@@ -100,7 +100,6 @@ if proceed:
 	conn.commit()
 
 	#returns the cookie and json
-	print old
 	print cookie
 	print
 	print json.dumps(data)

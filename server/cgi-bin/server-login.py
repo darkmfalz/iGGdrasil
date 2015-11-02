@@ -166,7 +166,6 @@ else:
 			conn.commit()
 
 			#Return the cookie and JSON
-			print old
 			print cookie
 			print
 			print json.dumps(data)
