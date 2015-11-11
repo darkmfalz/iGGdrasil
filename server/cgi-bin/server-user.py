@@ -47,6 +47,28 @@ def badLogin():
 	</head>
 
 	<body>
+		<div class="wrapper">
+			<div class="banner">
+				<a class="titlelink" class="bannerlink" href="/" title="Go to main page">
+					<div style="white-space: nowrap; padding-top: 10px; padding-bottom: 10px;">
+						<img src="../img/icons/grammar-nazi-circle.png" style="vertical-align:middle" width=100>
+						<img src="../img/icons/redtitle.png" style="vertical-align:middle" height=50>
+					</div>
+				</a>
+			</div>
+
+			<div class="mainpage">
+			</div>
+		</div>
+		
+		<div class="footer" xmlns:dc="http://purl.org/dc/elements/1.1/">
+			<img src="../img/icons/hr.png" style="vertical-align:middle">
+			<p id="copyright" property="dc:rights">&copy;
+				<span property="dc:dateCopyrighted">2015</span>
+				<span property="dc:publisher">Adeeb Sheikh</span>
+			</p>
+		</div>
+
 	</body>
 	</html>'''
 
