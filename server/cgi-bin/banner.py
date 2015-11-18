@@ -18,7 +18,7 @@ def noLogin():
 				<a class="titlelink" class="bannerlink" href="/" title="Go to main page">
 				<div style="white-space: nowrap; padding-top: 10px; padding-bottom: 10px;">
 					<img src="/img/icons/yggdrasil.png" style="vertical-align:middle" width=100>
-					<span>Yggdrasil</span>
+					<span>iGGDRASiL</span>
 				</div>
 			</a>
 
@@ -94,10 +94,10 @@ else:
 			username = r[0].decode('hex')
 		#If the username submitted in the form is on the cookie
 		if(username == cookieUsername):
-			print '''						<a class="titlelink" class="bannerlink" href="/" title="Go to main page">
+			print '''
+						<a class="titlelink" class="bannerlink" href="/" title="Go to main page">
 							<div style="white-space: nowrap; padding-top: 10px; padding-bottom: 10px;">
-								<img src="/img/icons/yggdrasil.png" style="vertical-align:middle" width=100>
-								<span>Yggdrasil</span>
+								<img src="/img/icons/yggdrasil.png" style="vertical-align:middle" width=50>
 							</div>
 						</a>
 
