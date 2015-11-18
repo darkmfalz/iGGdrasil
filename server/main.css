@@ -6,6 +6,7 @@
 html, body{
 	height: 100%;
 	font-family: "Arial", Helvetica, sans-serif;
+	background-color: #DCEDC8;
 }
 
 	.wrapper{
@@ -15,53 +16,50 @@ html, body{
 	}
 
 		/*Courtesy of http://www.bestcssbuttongenerator.com*/
-		button{
-			-moz-box-shadow:inset 0px 1px 0px 0px #f29c93;
-			-webkit-box-shadow:inset 0px 1px 0px 0px #f29c93;
-			box-shadow:inset 0px 1px 0px 0px #f29c93;
-			background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #fe1a00), color-stop(1, #ce0100));
-			background:-moz-linear-gradient(top, #fe1a00 5%, #ce0100 100%);
-			background:-webkit-linear-gradient(top, #fe1a00 5%, #ce0100 100%);
-			background:-o-linear-gradient(top, #fe1a00 5%, #ce0100 100%);
-			background:-ms-linear-gradient(top, #fe1a00 5%, #ce0100 100%);
-			background:linear-gradient(to bottom, #fe1a00 5%, #ce0100 100%);
-			filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fe1a00', endColorstr='#ce0100',GradientType=0);
-			background-color:#fe1a00;
-			-moz-border-radius:6px;
-			-webkit-border-radius:6px;
-			border-radius:6px;
-			border:1px solid #d83526;
-			display:inline-block;
-			cursor:pointer;
-			color:#ffffff;
-			font-family:Arial;
-			font-size:15px;
-			white-space: nowrap;
-			padding:6px 24px;
-			text-decoration:none;
-			text-shadow:0px 1px 0px #b23e35;
-		}
-		button:hover {
-			background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ce0100), color-stop(1, #fe1a00));
-			background:-moz-linear-gradient(top, #ce0100 5%, #fe1a00 100%);
-			background:-webkit-linear-gradient(top, #ce0100 5%, #fe1a00 100%);
-			background:-o-linear-gradient(top, #ce0100 5%, #fe1a00 100%);
-			background:-ms-linear-gradient(top, #ce0100 5%, #fe1a00 100%);
-			background:linear-gradient(to bottom, #ce0100 5%, #fe1a00 100%);
-			filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ce0100', endColorstr='#fe1a00',GradientType=0);
-			background-color:#ce0100;
-		}
-		button:active {
-			position:relative;
-			top:1px;
-		}
+button {
+	white-space:nowrap;
+	-moz-box-shadow:inset 0px 1px 0px 0px #7a8eb9;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #7a8eb9;
+	box-shadow:inset 0px 1px 0px 0px #7a8eb9;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #637aad), color-stop(1, #5972a7));
+	background:-moz-linear-gradient(top, #637aad 5%, #5972a7 100%);
+	background:-webkit-linear-gradient(top, #637aad 5%, #5972a7 100%);
+	background:-o-linear-gradient(top, #637aad 5%, #5972a7 100%);
+	background:-ms-linear-gradient(top, #637aad 5%, #5972a7 100%);
+	background:linear-gradient(to bottom, #637aad 5%, #5972a7 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#637aad', endColorstr='#5972a7',GradientType=0);
+	background-color:#637aad;
+	border:1px solid #314179;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:13px;
+	font-weight:bold;
+	padding:6px 12px;
+	text-decoration:none;
+}
+button:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #5972a7), color-stop(1, #637aad));
+	background:-moz-linear-gradient(top, #5972a7 5%, #637aad 100%);
+	background:-webkit-linear-gradient(top, #5972a7 5%, #637aad 100%);
+	background:-o-linear-gradient(top, #5972a7 5%, #637aad 100%);
+	background:-ms-linear-gradient(top, #5972a7 5%, #637aad 100%);
+	background:linear-gradient(to bottom, #5972a7 5%, #637aad 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#5972a7', endColorstr='#637aad',GradientType=0);
+	background-color:#5972a7;
+}
+button:active {
+	position:relative;
+	top:1px;
+}
 
 		.banner{
 			margin: 0 auto;
 			padding: 0;
 			width: 100%;
 			overflow: hidden;
-			background-color: rgb(0, 0, 0);
+			background-color:#8BC34A;
 			display: flex;
 			justify-content: space-between;
 		}
@@ -69,7 +67,7 @@ html, body{
 			.titlelink{
 				padding-left: 15px;
 				text-decoration: none;
-				color: rgb(255, 0, 0);
+				color: rgb(255, 255, 255);
 				font-family: "Impact", Charcoal, sans-serif;
 				font-size: 200%;
 			}
@@ -78,7 +76,7 @@ html, body{
 				padding-top: 35px;
 				padding-right: 15px;
 				text-decoration: none;
-				color: rgb(255, 0, 0);
+				color: rgb(255, 255, 255);
 			}
 
 				.logintable{

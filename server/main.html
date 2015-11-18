@@ -6,7 +6,7 @@
 	<meta name="author" content="Adeeb Sheikh">
 
 	<title>
-		Main Page | GrammarNazi
+		Main Page | Yggdrasil
 	</title>
 
 	<link rel="stylesheet" type="text/css" href="./main.css">
@@ -45,18 +45,146 @@
 			}
 
 		});
+
+		$.ajax({
+
+			url: "/cgi-bin/server-authenticate.py",
+
+			data: {
+			},
+
+			type: "GET",
+
+			dataType: "json",
+
+			success: function(data){
+
+				console.log("Currently logged in as:");
+				console.log(data.username);
+				window.location.assign("./");
+
+			}
+
+		});
+
+		$(document).ready(function(){
+
+			$.ajax({
+
+				url: "/cgi-bin/banner.py",
+
+				data: {
+				},
+
+				type: "GET",
+
+				dataType: "html",
+
+				success: function(data){
+
+					$("div.banner").html(data);
+
+					$("#username").focus();
+
+				}
+
+			});
+
+			$(document).on('submit', '#login', function(e){
+
+				//get the username and password from the textbox
+				var username = $("#username").val();
+				var password = $("#password").val();
+
+				if (document.getElementById('persist_box').checked) {
+					var checked = "TRUE";
+				} 
+				else {
+					var checked = "FALSE";
+				}
+				console.log(username);
+				console.log(password);
+				console.log(checked);
+
+				$.ajax({
+
+					url: "/cgi-bin/server-login.py",
+
+					data: {
+						requested_username: username,
+						requested_password: password,
+						keep_loggedin: checked
+					},
+
+					type: "POST",
+
+					dataType: "json",
+
+					success: function(data){
+
+						console.log("Successfully logged in as:");
+						console.log(data.username);
+						$("#username").val("");
+						$("#password").val("");
+						window.location.assign("./users/".concat(data.username));
+
+					},
+
+					error: function(){
+
+						alert("There was a problem: invalid username/password combination.");
+						$("#username").val("");
+						$("#password").val("");
+
+					}
+
+
+				});
+
+				e.preventDefault();
+
+				return false;
+
+			});
+
+			$(document).on('submit', '#logout', function(e){
+						
+				$.ajax({
+
+					url: "/cgi-bin/server-logout.py",
+
+					data: {
+					},
+
+					type: "POST",
+
+					datatype: "json",
+
+					success: function(data){
+
+						window.location.assign("../login");
+
+					},
+
+					error: function(){
+
+						console.log("Error logging out.");
+
+					}
+
+				});
+
+				e.preventDefault();
+				return false;
+			});
+
+		});
 	</script>
 </head>
 
 <body>
 	<div class="wrapper">
 		<div class="banner">
-			<a class="titlelink" class="bannerlink" href="/" title="Go to main page">
-				<div style="white-space: nowrap; padding-top: 10px; padding-bottom: 10px;">
-					<img src="img/icons/grammar-nazi-circle.png" style="vertical-align:middle" width=100>
-					<img src="img/icons/redtitle.png" style="vertical-align:middle" height=50>
-				</div>
-			</a>
 		</div>
 
 		<div class="mainpage">
