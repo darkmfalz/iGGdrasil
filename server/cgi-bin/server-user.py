@@ -80,7 +80,6 @@ def redirect():
 					var checked = "FALSE";
 				}
 				console.log(username);
-				console.log(password);
 				console.log(checked);
 
 				$.ajax({
@@ -278,7 +277,6 @@ def viewProfile():
 								var checked = "FALSE";
 							}
 							console.log(username);
-							console.log(password);
 							console.log(checked);
 
 							$.ajax({
@@ -465,7 +463,6 @@ else:
 							error: function(){
 
 								console.log("Not logged in.");
-								window.location.assign("/users/''' + username + '''");
 
 							}
 
@@ -536,7 +533,6 @@ else:
 								var checked = "FALSE";
 							}
 							console.log(username);
-							console.log(password);
 							console.log(checked);
 
 							$.ajax({

@@ -91,7 +91,8 @@ if EMAIL_REGEX.match(requested_username):
 					old['username']['expires']='Sun, 12 Nov 1995 00:00:00 GMT'
 					c.execute('delete from loggedin where sessionid=?', [old['username'].value])
 					conn.commit()
-			c.execute('insert into loggedin values (?, ?)', [sessionid, username.encode('hex')])
+			c.execute("insert into loggedin values (?, ?, datetime('NOW'))", [sessionid, username.encode('hex')])
+			c.execute("update accounts set loggedin=datetime('NOW') where username=?", [username.encode('hex')])
 			conn.commit()
 
 			#Return the cookie and JSON
@@ -162,7 +163,8 @@ else:
 					old['username']['path'] = "/"
 					c.execute('delete from loggedin where sessionid=?', [old['username'].value])
 					conn.commit()
-			c.execute('insert into loggedin values (?, ?)', [sessionid, username.encode('hex')])
+			c.execute("insert into loggedin values (?, ?, datetime('NOW'))", [sessionid, username.encode('hex')])
+			c.execute("update accounts set loggedin=datetime('NOW') where username=?", [username.encode('hex')])
 			conn.commit()
 
 			#Return the cookie and JSON

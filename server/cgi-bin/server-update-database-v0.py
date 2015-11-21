@@ -8,7 +8,7 @@ conn = sqlite3.connect('users.db')
 c = conn.cursor()
 
 # create a new 'users' table with three columns: name, age, image
-c.execute('create table accounts(username varchar(200) primary key, firstname varchar(200), lastname varchar(200), image varchar(200), email varchar(200), password varchar(200), salt varchar(200))')
+c.execute('create table accounts(username varchar(200) primary key not null, firstname varchar(200) not null, lastname varchar(200) not null, image varchar(200) not null, email varchar(200) not null, password varchar(200) not null, salt varchar(200) not null, created date, loggedin date)')
 
 #Salt 'n' Hash the password
 #import hashlib
