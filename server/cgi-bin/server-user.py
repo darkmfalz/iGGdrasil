@@ -21,7 +21,7 @@ firstname = ""
 lastname = ""
 image = ""
 
-def badLogin():
+def redirect():
 	print 'Content-Type: text/html'
 	print
 
@@ -31,7 +31,7 @@ def badLogin():
 	<html>
 	<head>
 		<title>
-			Bad Login
+			Redirecting... | iGG
 		</title>
 		<link rel="stylesheet" type="text/css" href="../main.css">
 		<link rel="shortcut icon" href="../img/icons/favicon.ico" type="image/x-icon">
@@ -179,39 +179,31 @@ def badLogin():
 	</body>
 	</html>'''
 
-#Checks if there's a cookie already
-stored_cookie_string = os.environ.get('HTTP_COOKIE')
-#If not, it's a bad login!
-if not stored_cookie_string:
-	badLogin()
-#Otherwise, check the cookie
-else:
-	cookie = Cookie.SimpleCookie(stored_cookie_string)
-	#If the cookie is 'username'
-	if 'username' in cookie:
-		cookieUsername = ""
-		for r in c.execute('select * from loggedin where sessionid=?', [cookie['username'].value]):
-			cookieUsername = r[1].decode('hex')
-		#If the username submitted in the form is on the cookie
-		if(username == cookieUsername):
-			#Then, find the user and retrieve the values
-			#NOTE: this script doesn't really DO anything if the user doesn't exist and HAS a cookie with a matching username
-			for r in c.execute('select * from accounts where username=?', [username.encode('hex')]):
-				firstname = r[1].decode('hex')
-				lastname = r[2].decode('hex')
-				image = r[3].decode('hex')
+def viewProfile():
+	proceed = False
 
-			# prints a minimal HTTP header
-			print 'Content-Type: text/html'
-			print
+	for r in c.execute('select * from accounts'):
+		name = r[0].decode('hex')
+		if name == username:
+			proceed = True
 
-			# print the HTTP body, which is the HTML file representing lecture1.html
+	if proceed:
+		#Find the user and retrieve the values
+		#NOTE: this script doesn't really DO anything if the user doesn't exist and HAS a cookie with a matching username
+		for r in c.execute('select * from accounts where username=?', [username.encode('hex')]):
+			firstname = r[1].decode('hex')
+			lastname = r[2].decode('hex')
+			image = r[3].decode('hex')
 
-			print '''
+		# prints a minimal HTTP header
+		print 'Content-Type: text/html'
+		print
+
+		print '''
 			<html>
 			<head>
 				<title>
-						''' + username + ''' | Yggdrasil
+						''' + username + ''' | iGG
 				</title>
 				<link rel="stylesheet" type="text/css" href="../main.css">
 				<link rel="shortcut icon" href="../img/icons/favicon.ico" type="image/x-icon">
@@ -253,15 +245,6 @@ else:
 							}
 							reader.readAsDataURL(file);
 						}
-
-						document.getElementById('fileinput').addEventListener('change', function(){
-							var file = this.files[0];
-							console.log("name : " + file.name);
-							console.log("size : " + file.size);
-							console.log("type : " + file.type);
-							console.log("date : " + file.lastModified);
-							renderImage(file)
-						}, false);
 
 						$.ajax({
 
@@ -392,11 +375,267 @@ else:
 								<img id="profilepic" src=".''' + image + '''" />
 							</div>
 
-							<!-- <form enctype="multipart/form-data" action="/img/users" method="post">
-								<input id="image-file" type="file" />
-							</form> -->
+						</div>
+					</div>
+				</div>
 
-							<input id="fileinput" type="file" />
+				<div class="footer" xmlns:dc="http://purl.org/dc/elements/1.1/">
+					<img src="../img/icons/hr.png" style="vertical-align:middle">
+					<p id="copyright" property="dc:rights">&copy;
+						<span property="dc:dateCopyrighted">2015</span>
+						<span property="dc:publisher">Adeeb Sheikh</span>
+					</p>
+				</div>
+			</body>
+		</html>'''
+	else:
+		redirect()
+
+#Checks if there's a cookie already
+stored_cookie_string = os.environ.get('HTTP_COOKIE')
+#If not, it's a bad login!
+if not stored_cookie_string:
+	viewProfile()
+#Otherwise, check the cookie
+else:
+	cookie = Cookie.SimpleCookie(stored_cookie_string)
+	#If the cookie is 'username'
+	if 'username' in cookie:
+		cookieUsername = ""
+		for r in c.execute('select * from loggedin where sessionid=?', [cookie['username'].value]):
+			cookieUsername = r[1].decode('hex')
+		#If the username submitted in the form is on the cookie
+		if(username == cookieUsername):
+			#Then, find the user and retrieve the values
+			#NOTE: this script doesn't really DO anything if the user doesn't exist and HAS a cookie with a matching username
+			for r in c.execute('select * from accounts where username=?', [username.encode('hex')]):
+				firstname = r[1].decode('hex')
+				lastname = r[2].decode('hex')
+				image = r[3].decode('hex')
+
+			# prints a minimal HTTP header
+			print 'Content-Type: text/html'
+			print
+
+			# print the HTTP body, which is the HTML file representing lecture1.html
+
+			print '''
+			<html>
+			<head>
+				<title>
+						''' + username + ''' | iGG
+				</title>
+				<link rel="stylesheet" type="text/css" href="../main.css">
+				<link rel="shortcut icon" href="../img/icons/favicon.ico" type="image/x-icon">
+				<link rel="icon" href="../img/icons/favicon.ico" type="image/x-icon">
+				
+				<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+				<script>
+
+					$(document).ready(function(){
+
+						$.ajax({
+
+							url: "/cgi-bin/server-authenticate.py",
+
+							data: {
+							},
+
+							type: "GET",
+
+							dataType: "json",
+
+							success: function(data){
+
+								console.log("Currently logged in as:");
+								console.log(data.username);
+								document.getElementById("editprofile").innerHTML = '<input id="fileinput" type="file" />';
+
+								document.getElementById('fileinput').addEventListener('change', function(){
+									var file = this.files[0];
+									console.log("name : " + file.name);
+									console.log("size : " + file.size);
+									console.log("type : " + file.type);
+									console.log("date : " + file.lastModified);
+									renderImage(file)
+								}, false);
+
+							},
+
+							error: function(){
+
+								console.log("Not logged in.");
+								window.location.assign("/users/''' + username + '''");
+
+							}
+
+						});
+
+						function shiftProfile(the_url){
+							var theImage = new Image();
+							theImage.src = the_url;
+							var imageHeightRatio = 250/theImage.height;
+
+							if(theImage.width > theImage.height){
+								var imageShift = (theImage.width*imageHeightRatio-250)/2;
+
+								console.log(theImage.src);
+								console.log(theImage.height);
+								console.log(imageShift);
+
+								$("#profilepic").attr("src", the_url);
+								$("#profilepic").attr("style", "margin-left: -" + imageShift + "px;");
+							}
+							if(theImage.width < theImage.height){
+								var imageShift = (250-theImage.width*imageHeightRatio)/2;
+								$("#profilepic").attr("src", the_url);
+								$("#profilepic").attr("style", "margin-left: " + imageShift + "px;");
+							}
+						}
+
+						shiftProfile($('#profilepic').attr('src'));
+
+						function renderImage(file){
+							var reader = new FileReader();
+							reader.onload = function(event){
+								the_url = event.target.result;
+								shiftProfile(the_url);
+							}
+							reader.readAsDataURL(file);
+						}
+
+						$.ajax({
+
+							url: "/cgi-bin/banner.py",
+
+							data: {
+							},
+
+							type: "GET",
+
+							dataType: "html",
+
+							success: function(data){
+
+								$("div.banner").html(data);
+
+							}
+
+						});
+
+						$(document).on('submit', '#login', function(e){
+
+							//get the username and password from the textbox
+							var username = $("#username").val();
+							var password = $("#password").val();
+
+							if (document.getElementById('persist_box').checked) {
+								var checked = "TRUE";
+							} 
+							else {
+								var checked = "FALSE";
+							}
+							console.log(username);
+							console.log(password);
+							console.log(checked);
+
+							$.ajax({
+
+								url: "/cgi-bin/server-login.py",
+
+								data: {
+									requested_username: username,
+									requested_password: password,
+									keep_loggedin: checked
+								},
+
+								type: "POST",
+
+								dataType: "json",
+
+								success: function(data){
+
+									console.log("Successfully logged in as:");
+									console.log(data.username);
+									$("#username").val("");
+									$("#password").val("");
+									window.location.assign("/users/".concat(data.username));
+
+								},
+
+								error: function(){
+
+									alert("There was a problem: invalid username/password combination.");
+									$("#username").val("");
+									$("#password").val("");
+
+								}
+
+
+							});
+
+							e.preventDefault();
+
+							return false;
+
+						});
+
+						$(document).on('submit', '#logout', function(e){
+									
+							$.ajax({
+
+								url: "/cgi-bin/server-logout.py",
+
+								data: {
+								},
+
+								type: "POST",
+
+								datatype: "json",
+
+								success: function(data){
+
+									window.location.assign("../login");
+
+								},
+
+								error: function(){
+
+									console.log("Error logging out.");
+
+								}
+
+							});
+
+							e.preventDefault();
+							return false;
+						});
+					});
+				</script>
+			</head>
+				
+			<body>
+				<div class="wrapper">
+					<div class="banner">
+					</div>
+
+					<div class="mainpage">
+						<div class="profile">
+							<h1>
+								''' + username + '''
+							</h1>
+
+							<h2>
+								''' + firstname + ' ' + lastname + '''
+							</h2>
+
+							<div class="bigprofilecrop">
+								<img id="profilepic" src=".''' + image + '''" />
+							</div>
+
+							<div id="editprofile">
+								
+							</div>
 
 						</div>
 					</div>
@@ -412,6 +651,6 @@ else:
 			</body>
 		</html>'''
 		else:
-			badLogin()
+			viewProfile()
 
 conn.close()

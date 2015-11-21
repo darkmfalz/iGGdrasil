@@ -18,7 +18,7 @@ def noLogin():
 				<a class="titlelink" class="bannerlink" href="/" title="Go to main page">
 				<div style="white-space: nowrap; padding-top: 10px; padding-bottom: 10px;">
 					<img src="/img/icons/yggdrasil.png" style="vertical-align:middle" width=100>
-					<span>iGGDRASiL</span>
+					<span>iGG</span>
 				</div>
 			</a>
 
@@ -26,11 +26,11 @@ def noLogin():
 				<form action="" id="login">
 					<table class="logintable">
 						<tr>
-							<td>
+							<td style="color: rgb(255, 255, 255);">
 								Username or Email
 							</td>
 
-							<td>
+							<td style="color: rgb(255, 255, 255);">
 								Password
 							</td>
 						</tr>
@@ -52,7 +52,7 @@ def noLogin():
 						</tr>
 
 						<tr>
-							<td>
+							<td style="color: rgb(255, 255, 255);">
 								<div>
 									<input type="checkbox" id="persist_box" checked="1"/>
 									<label for="persist_box">
@@ -60,7 +60,7 @@ def noLogin():
 									</label>
 								</div>
 							</td>
-							<td>
+							<td style="color: rgb(255, 255, 255);">
 								<a class="bannerlink"href="/passwordreset">
 									Forgot your password?
 								</a>
