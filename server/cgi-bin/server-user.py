@@ -203,7 +203,7 @@ def viewProfile():
 							</h2>
 
 							<div class="bigprofilecrop">
-								<img id="profilepic" src=".''' + image + '''" />
+								<img id="profilepic" src="''' + image + '''" />
 							</div>
 
 						</div>

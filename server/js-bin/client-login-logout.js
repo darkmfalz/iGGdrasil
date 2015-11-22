@@ -33,7 +33,7 @@ $(document).on('submit', '#login', function(e){
 			console.log(data.username);
 			$("#username").val("");
 			$("#password").val("");
-			window.location.assign("./users/".concat(data.username));
+			window.location.assign("/users/".concat(data.username));
 
 		},
 
