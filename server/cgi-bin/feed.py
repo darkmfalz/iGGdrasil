@@ -25,7 +25,7 @@ print 'Content-Type: text/html'
 print
 
 print "<table>"
-for r in c.execute('select * from grammars'):
+for r in c.execute('select * from grammars order by created desc'):
 	print "<tr><td style='white-space:pre-wrap;'>"
 	printThread(r)
 	print "</td></tr>"
