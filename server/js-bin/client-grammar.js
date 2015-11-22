@@ -23,6 +23,25 @@ $(document).on('submit', '#createnewgrammar', function(e){
 			$("#grammartitle").val("");
 			$("#grammar").val("");
 
+			$.ajax({
+
+				url: "/cgi-bin/feed.py",
+
+				data: {
+				},
+
+				type: "GET",
+
+				dataType: "html",
+
+				success: function(data){
+
+					console.log('hi');
+					$("#feed").html(data);
+
+				}
+			});
+			
 		},
 
 		error: function(){
@@ -32,8 +51,6 @@ $(document).on('submit', '#createnewgrammar', function(e){
 			$("#grammar").val("");
 
 		}
-
-
 	});
 
 	e.preventDefault();
