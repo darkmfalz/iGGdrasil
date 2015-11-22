@@ -289,6 +289,33 @@ else:
 									console.log("type : " + file.type);
 									console.log("date : " + file.lastModified);
 									renderImage(file)
+
+									var reader1 = new FileReader();
+									reader1.onload = function(event){
+										the_url = event.target.result;
+										console.log(the_url);
+
+										$.ajax({
+
+											url: "/cgi-bin/server-change-picture.py",
+
+											data: {
+												url: the_url
+											},
+
+											type: "POST",
+
+											dataType: "html",
+
+											success: function(){
+
+											}
+
+										});
+
+									}
+									reader1.readAsDataURL(file);
+									
 								}, false);
 
 							},
@@ -376,7 +403,7 @@ else:
 							</h2>
 
 							<div class="bigprofilecrop">
-								<img id="profilepic" src=".''' + image + '''" />
+								<img id="profilepic" src="''' + image + '''" />
 							</div>
 
 							<div id="editprofile">
