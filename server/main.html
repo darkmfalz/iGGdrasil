@@ -42,6 +42,25 @@
 
 			$.ajax({
 
+				url: "/cgi-bin/feed.py",
+
+				data: {
+				},
+
+				type: "GET",
+
+				dataType: "html",
+
+				success: function(data){
+
+					$("#feed").html(data);
+
+				}
+
+			});
+
+			$.ajax({
+
 				url: "/cgi-bin/server-authenticate.py",
 
 				data: {
@@ -55,7 +74,7 @@
 
 					console.log("Currently logged in as:");
 					console.log(data.username);
-					document.getElementById("newgrammar").innerHTML = '<form action="" id="createnewgrammar"><textarea rows="4" cols="50" id="grammar">Enter new grammar...</textarea><button id="creategrammarbutton">Submit</button></form>';
+					document.getElementById("newgrammar").innerHTML = '<form action="" id="createnewgrammar"><table><tr><td><input id="grammartitle" type=text size="30"/></td></tr><tr><td><textarea rows="4" cols="50" id="grammar"></textarea></td></tr><tr><td><button id="creategrammarbutton">Submit</button></td></tr></table></form>';
 
 				},
 
@@ -83,8 +102,21 @@
 		</div>
 
 		<div class="mainpage">
-			<div id="newgrammar">
-			</div>
+			<table>
+				<tr>
+					<td>
+						<div id="newgrammar">
+						</div>
+					</td>
+				</tr>
+
+				<tr>
+					<td>
+						<div id="feed">
+						</div>
+					</td>
+				</tr>
+			</table>
 		</div>
 	</div>
 	

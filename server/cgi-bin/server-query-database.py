@@ -45,7 +45,7 @@ while True:
 		for r in c.execute('select * from loggedin'):
 			print "Username:\t" + r[1].decode('hex') + "\nSessionID:\t" + r[0] + "\nLogged-In:\t" + r[2]
 			print
-	elif(query == "comments"):
-		for r in c.execute('select * from comments'):
-			print "Username:\t" + r[1].decode('hex') + "\nCommentID:\t" + r[0] + "\nDate:\t" + r[3] + "\nBody:\t" + r[4].decode('hex')
+	elif(query == "grammars"):
+		for r in c.execute('select * from grammars'):
+			print "Username:\t" + r[1].decode('hex') + "\nGrammarID:\t" + r[0] + "\nTitle:\t" + r[4].decode('hex') + "\nDate:\t" + r[2] + "\nBody:\n" + r[3].decode('hex')
 			print

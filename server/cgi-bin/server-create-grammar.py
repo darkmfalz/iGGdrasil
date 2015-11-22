@@ -15,6 +15,7 @@ cgitb.enable()
 #Retrieve inputs
 form = cgi.FieldStorage()
 input_grammar = form['input_grammar'].value
+input_title = form['input_title'].value
 
 #Connect to database
 conn = sqlite3.connect('users.db')
@@ -51,14 +52,14 @@ else:
 			now = datetime.datetime.now()
 			nowString = now.strftime("%a, %d-%b-%Y %H:%M:%S EST")
 
-			commentid = username + nowString
+			commentid = "G" + nowString + username
 			commentid = commentid.encode('hex')
 
 			proceed = True
 
 			while proceed == False:
 				gonein = False
-				for a in c.execute('select * from comments where id=?', [commentid]):
+				for a in c.execute('select * from grammars where id=?', [commentid]):
 					gonein = True
 					proceed = False
 
@@ -72,7 +73,7 @@ else:
 					commentid = commentid.encode('hex')
 
 
-			c.execute("insert into comments values (?, ?, ?, datetime('NOW'), ?, ?)", [commentid, r[0], "-1", input_grammar.encode('hex'), "TRUE"])
+			c.execute("insert into grammars values (?, ?, datetime('NOW'), ?, ?)", [commentid, r[0], input_grammar.encode('hex'), input_title.encode('hex')])
 			conn.commit()
 
 			print

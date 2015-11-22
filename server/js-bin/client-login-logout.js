@@ -69,7 +69,7 @@ $(document).on('submit', '#logout', function(e){
 
 		success: function(data){
 
-			window.location.assign("../login");
+			window.location.assign("/signup");
 
 		},
 
