@@ -202,7 +202,7 @@ def viewProfile():
 								''' + firstname + ' ' + lastname + '''
 							</h2>
 
-							<div class="bigprofilecrop">
+							<div class="center-cropped">
 								<img id="profilepic" src="''' + image + '''" />
 							</div>
 
@@ -328,35 +328,16 @@ else:
 
 						});
 
-						function shiftProfile(the_url){
-							var theImage = new Image();
-							theImage.src = the_url;
-							var imageHeightRatio = 250/theImage.height;
-
-							if(theImage.width > theImage.height){
-								var imageShift = (theImage.width*imageHeightRatio-250)/2;
-
-								console.log(theImage.src);
-								console.log(theImage.height);
-								console.log(imageShift);
-
-								$("#profilepic").attr("src", the_url);
-								$("#profilepic").attr("style", "margin-left: -" + imageShift + "px;");
-							}
-							if(theImage.width < theImage.height){
-								var imageShift = (250-theImage.width*imageHeightRatio)/2;
-								$("#profilepic").attr("src", the_url);
-								$("#profilepic").attr("style", "margin-left: " + imageShift + "px;");
-							}
-						}
-
-						shiftProfile($('#profilepic').attr('src'));
-
 						function renderImage(file){
 							var reader = new FileReader();
 							reader.onload = function(event){
 								the_url = event.target.result;
-								shiftProfile(the_url);
+								$("#profilepic").attr("src", the_url);
+								var str1 = "url(";
+								var str2 = str1.concat(the_url);
+								var str3 = ")";
+								var str4 = str2.concat(str3);
+								$(".center-cropped").css("background-image", str4);
 							}
 							reader.readAsDataURL(file);
 						}
@@ -402,7 +383,7 @@ else:
 								''' + firstname + ' ' + lastname + '''
 							</h2>
 
-							<div class="bigprofilecrop">
+							<div class="center-cropped" style='background-image: url("''' + image + '''");'>
 								<img id="profilepic" src="''' + image + '''" />
 							</div>
 

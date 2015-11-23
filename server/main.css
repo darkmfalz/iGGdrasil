@@ -111,14 +111,26 @@ button:active {
 			padding-top: 20px;
 		}
 
-			.bigprofilecrop{
+			/* Credit for the crop: */
+			/* http://stackoverflow.com/questions/11552380/how-to-automatically-crop-and-center-an-image */
+			.center-cropped {
 				width: 250px;
 				height: 250px;
+				background-position: center center;
+				background-repeat: no-repeat;
+				background-size: 250px;
 				overflow: hidden;
 			}
 
-			.bigprofilecrop img{
-				height: 250px;
+			.center-cropped img {
+				min-height: 100%;
+				max-width: 100%;
+				/* IE 8 */
+				-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+				/* IE 5-7 */
+				filter: alpha(opacity=0);
+				/* modern browsers */
+				opacity: 0;
 			}
 
 	.footer{
