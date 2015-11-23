@@ -95,15 +95,32 @@ button:active {
 							text-decoration: underline;
 						}
 
-					.profilecrop{
-						width: 100px;
-						height: 100px;
+					/* Credit for the crop: */
+					/* http://stackoverflow.com/questions/26421274/css-circular-cropping-of-rectangle-image */
+					.circle-cropper {
+						width: 50px;
+						height: 50px;
+						position: relative;
 						overflow: hidden;
+						border-radius: 50%;
+						text-align: center; /* ensures the image is always in the h-middle */
 					}
 
-					.profilecrop img{
-						height: 250px;
+					.circle-cropper img{
+						display: inline;
+						margin: 0 auto;
+						height: 100%;
+						width: auto;
+						position: relative; /* allows repositioning */
+						left: 100%; /* move the whole width of the image to the right */
+						margin-left: -200%; /* magic! */
 					}
+
+			.logoutdiv{
+				padding-top: 10px;
+				text-decoration: none;
+				color: rgb(255, 255, 255);
+			}
 
 		.mainpage{
 			display: flex;

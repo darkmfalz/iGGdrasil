@@ -89,9 +89,11 @@ else:
 			cookieUsername = r[1].decode('hex')
 
 		username = ""
+		image = ""
 
 		for r in c.execute('select * from accounts where username=?', [cookieUsername.encode('hex')]):
 			username = r[0].decode('hex')
+			image = r[3].decode('hex')
 		#If the username submitted in the form is on the cookie
 		if(username == cookieUsername):
 			print '''
@@ -101,12 +103,26 @@ else:
 							</div>
 						</a>
 
-						<div class="logindiv">
-							<form action="" id="logout">
-								<button id="logoutbutton">
-									Log Out
-								</button>
-							</form>
+						<div class="logoutdiv">
+							<table class="logintable">
+								<tr>
+									<td>
+										<a href="/users/''' + username +'''">
+											<div class="circle-cropper">
+												<img src="''' + image + '''" class="rounded" />
+											</div>
+										</a>
+									</td>
+
+									<td>
+										<form action="" id="logout">
+											<button id="logoutbutton">
+												Log Out
+											</button>
+										</form>
+									</td>
+								</tr>
+							</table>
 						</div>'''
 		else:
 			noLogin()
