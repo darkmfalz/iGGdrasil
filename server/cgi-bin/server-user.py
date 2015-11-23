@@ -105,6 +105,10 @@ def viewProfile():
 	if proceed:
 		#Find the user and retrieve the values
 		#NOTE: this script doesn't really DO anything if the user doesn't exist and HAS a cookie with a matching username
+		firstname = ""
+		lastname = ""
+		image = ""
+
 		for r in c.execute('select * from accounts where username=?', [username.encode('hex')]):
 			firstname = r[1].decode('hex')
 			lastname = r[2].decode('hex')
@@ -202,7 +206,7 @@ def viewProfile():
 								''' + firstname + ' ' + lastname + '''
 							</h2>
 
-							<div class="center-cropped">
+							<div class="center-cropped" style='background-image: url("''' + image + '''");'>
 								<img id="profilepic" src="''' + image + '''" />
 							</div>
 

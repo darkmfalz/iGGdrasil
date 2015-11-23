@@ -16,7 +16,7 @@ c = conn.cursor()
 def printThread(r):
 	print '''
 <h1>''' + r[4].decode('hex') + '''</h1>
-<h2>Published on ''' + r[2] + ''' by ''' + r[1].decode('hex') + '''</h2>
+<h2>Published on ''' + r[2] + ''' by <a href="/users/''' + r[1].decode('hex')+'''" style='text-decoration:none;color:black;'>''' + r[1].decode('hex') + '''</a> </h2>
 <h2>Body:</h2>
 <p>''' + r[3].decode('hex') + '''</p>'''
 
