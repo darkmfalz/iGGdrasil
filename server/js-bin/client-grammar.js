@@ -25,7 +25,7 @@ $(document).on('submit', '#createnewgrammar', function(e){
 
 			$.ajax({
 
-				url: "/cgi-bin/feed.py",
+				url: "/cgi-bin/html-feed.py",
 
 				data: {
 				},
@@ -41,7 +41,7 @@ $(document).on('submit', '#createnewgrammar', function(e){
 
 				}
 			});
-			
+
 		},
 
 		error: function(){

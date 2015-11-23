@@ -48,7 +48,7 @@ def redirect():
 
 			$.ajax({
 
-				url: "/cgi-bin/banner.py",
+				url: "/cgi-bin/html-banner.py",
 
 				data: {
 				},
@@ -163,7 +163,7 @@ def viewProfile():
 
 						$.ajax({
 
-							url: "/cgi-bin/banner.py",
+							url: "/cgi-bin/html-banner.py",
 
 							data: {
 							},
@@ -363,7 +363,7 @@ else:
 
 						$.ajax({
 
-							url: "/cgi-bin/banner.py",
+							url: "/cgi-bin/html-banner.py",
 
 							data: {
 							},

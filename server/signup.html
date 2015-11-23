@@ -34,7 +34,7 @@
 
 				console.log("Currently logged in as:");
 				console.log(data.username);
-				window.location.assign("./users/".concat(data.username));
+				window.location.assign("/users/".concat(data.username));
 
 			}
 
@@ -44,7 +44,7 @@
 
 			$.ajax({
 
-				url: "/cgi-bin/banner.py",
+				url: "/cgi-bin/html-banner.py",
 
 				data: {
 				},
@@ -113,41 +113,59 @@
 				var password = $("#Spassword").val();
 				var email = $("#email").val();
 
-				if(/[a-zA-z0-9_\-\.]+@[a-zA-z0-9_\-\.]+\.[a-zA-z0-9_\-\.]+/.test(email)){
+				if(/[a-zA-Z0-9_\-\.]+@[a-zA-Z0-9_\-\.]+\.[a-zA-Z0-9_\-\.]+/.test(email)){
 
-					$.ajax({
+					if(/[^\/\\]+$/.test(username)){
 
-						url: "/cgi-bin/server-create-account.py",
+						$.ajax({
 
-						data: {
-							requested_username: username,
-							requested_firstname: firstname,
-							requested_lastname: lastname,
-							requested_password: password,
-							requested_email: email
-						},
+							url: "/cgi-bin/server-create-account.py",
 
-						type: "POST",
+							data: {
+								requested_username: username,
+								requested_firstname: firstname,
+								requested_lastname: lastname,
+								requested_password: password,
+								requested_email: email
+							},
 
-						dataType: "json",
+							type: "POST",
 
-						success: function(data){
+							dataType: "json",
 
-							console.log("Successfully created account:");
-							console.log(data.username);
-							firstnameinit();
-							lastnameinit();
-							usernameinit();
-							passwordinit();
-							emailinit();
+							success: function(data){
 
-							window.location.assign("./users/".concat(data.username));
+								console.log("Successfully created account:");
+								console.log(data.username);
+								firstnameinit();
+								lastnameinit();
+								usernameinit();
+								passwordinit();
+								emailinit();
 
-						},
+								window.location.assign("./users/".concat(data.username));
 
-						error: function(){
+							},
 
-							alert("There was a problem: the username is taken, or the email is taken/in an invalid format.");
+							error: function(){
+
+								alert("There was a problem: the username is taken, or the email is taken/in an invalid format.");
+								firstnameinit();
+								lastnameinit();
+								usernameinit();
+								passwordinit();
+								emailinit();
+
+							}
+
+						});
+
+					}
+					else{
+
+						function invalidUsername(){
+
+							alert("There was a problem: the username has illegal characters.");
 							firstnameinit();
 							lastnameinit();
 							usernameinit();
@@ -156,7 +174,9 @@
 
 						}
 
-					});
+						invalidUsername();
+
+					}
 
 				}
 				else{
