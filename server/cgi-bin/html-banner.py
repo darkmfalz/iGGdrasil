@@ -17,8 +17,8 @@ def noLogin():
 	print '''
 				<a class="titlelink" class="bannerlink" href="/" title="Go to main page">
 				<div style="white-space: nowrap; padding-top: 10px; padding-bottom: 10px;">
-					<img src="/img/icons/yggdrasil.png" style="vertical-align:middle" width=100>
-					<span>iGG</span>
+					<img src="/img/icons/igg.png" style="vertical-align:middle" width=100>
+					<img src="/img/icons/whitetitle.png" style="vertical-align:middle">
 				</div>
 			</a>
 
@@ -99,7 +99,7 @@ else:
 			print '''
 						<a class="titlelink" class="bannerlink" href="/" title="Go to main page">
 							<div style="white-space: nowrap; padding-top: 10px; padding-bottom: 10px;">
-								<img src="/img/icons/yggdrasil.png" style="vertical-align:middle" width=50>
+								<img src="/img/icons/igg_notext.png" style="vertical-align:middle" width=50>
 							</div>
 						</a>
 
