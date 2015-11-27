@@ -1,6 +1,7 @@
 TO-DO:
 
-1. Implement a comment system
+1. Fix AJAX on reload problem. Namely, AJAX will not execute on reload.
+2. Implement a comment system
 	a. Create pages for each thread
-2. Design a "news feed" for GrammarNazi
-3. Handle dangling login database (when session expires, log in not removed from database -- also, expire login after X amount of time, based on session length)
+3. Design a "news feed" for GrammarNazi
+4. Handle dangling login database (when session expires, log in not removed from database -- also, expire login after X amount of time, based on session length)

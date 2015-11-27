@@ -49,3 +49,7 @@ while True:
 		for r in c.execute('select * from grammars'):
 			print "Username:\t" + r[1].decode('hex') + "\nGrammarID:\t" + r[0] + "\nTitle:\t" + r[4].decode('hex') + "\nDate:\t" + r[2] + "\nBody:\n" + r[3].decode('hex')
 			print
+	elif(query == "comments"):
+		for r in c.execute('select * from comments'):
+			print "Username:\t" + r[1].decode('hex') + "\nCommentID:\t" + r[0] + "\nParent:\t" + r[4] + "\nDate:\t" + r[2] + "\nBody:\n" + r[3].decode('hex')
+			print
