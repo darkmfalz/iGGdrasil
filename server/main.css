@@ -154,6 +154,16 @@ html, body{
 			.thread{
 				border-collapse: separate;
 				padding-bottom: 15px;
+				max-width: 50%;
+			}
+
+				.thread td{
+					padding: 5px;
+				}
+
+			.threadnm{
+				border-collapse: separate;
+				padding-bottom: 15px;
 			}
 
 				.thread td{

@@ -68,7 +68,7 @@ def printThread(r):
 print 'Content-Type: text/html'
 print
 
-print "<table class='thread'>"
+print "<table class='threadnm'>"
 
 for r in c.execute('select * from grammars order by created desc'):
 	print "<tr><td>"
