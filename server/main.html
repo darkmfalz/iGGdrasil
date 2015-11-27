@@ -61,20 +61,18 @@
 
 			$.ajax({
 
-				url: "/cgi-bin/server-authenticate.py",
+				url: "/cgi-bin/html-new-grammar.py",
 
 				data: {
 				},
 
 				type: "GET",
 
-				dataType: "json",
+				dataType: "html",
 
 				success: function(data){
 
-					console.log("Currently logged in as:");
-					console.log(data.username);
-					document.getElementById("newgrammar").innerHTML = '<form action="" id="createnewgrammar"><table><tr><td><input id="grammartitle" type=text size="30"/></td></tr><tr><td><textarea rows="4" cols="50" id="grammar"></textarea></td></tr><tr><td><button id="creategrammarbutton">Submit</button></td></tr></table></form>';
+					document.getElementById("newgrammar").innerHTML = data;
 
 				},
 
@@ -102,7 +100,7 @@
 		</div>
 
 		<div class="mainpage">
-			<table>
+			<table class="thread">
 				<tr>
 					<td>
 						<div id="newgrammar">

@@ -63,48 +63,6 @@
 
 			});
 
-			//the re-initialization fields for the 'create account' textboxes
-			function firstnameinit(){
-
-				$("#firstname").val("First Name");
-				$("#firstname").css("color", "gray");
-
-			}
-
-			function lastnameinit(){
-
-				$("#lastname").val("Last Name");
-				$("#lastname").css("color", "gray");
-
-			}
-
-			function usernameinit(){
-
-				$("#Susername").val("User Name");
-				$("#Susername").css("color", "gray");
-
-			}
-
-			function passwordinit(){
-
-				$("#Spassword").val("Password");
-				$("#Spassword").css("color", "gray");
-
-			}
-
-			function emailinit(){
-
-				$("#email").val("Email Address");
-				$("#email").css("color", "gray");
-
-			}
-
-			firstnameinit();
-			lastnameinit();
-			usernameinit();
-			passwordinit();
-			emailinit();
-
 			function signup(){
 
 				var username = $("#Susername").val();
@@ -137,11 +95,11 @@
 
 								console.log("Successfully created account:");
 								console.log(data.username);
-								firstnameinit();
-								lastnameinit();
-								usernameinit();
-								passwordinit();
-								emailinit();
+								$("#Susername").val("");
+								$("#firstname").val("");
+								$("#lastname").val("");
+								$("#Spassword").val("");
+								$("#email").val("");
 
 								window.location.assign("./users/".concat(data.username));
 
@@ -150,11 +108,11 @@
 							error: function(){
 
 								alert("There was a problem: the username is taken, or the email is taken/in an invalid format.");
-								firstnameinit();
-								lastnameinit();
-								usernameinit();
-								passwordinit();
-								emailinit();
+								$("#Susername").val("");
+								$("#firstname").val("");
+								$("#lastname").val("");
+								$("#Spassword").val("");
+								$("#email").val("");
 
 							}
 
@@ -166,11 +124,11 @@
 						function invalidUsername(){
 
 							alert("There was a problem: the username has illegal characters.");
-							firstnameinit();
-							lastnameinit();
-							usernameinit();
-							passwordinit();
-							emailinit();
+							$("#Susername").val("");
+							$("#firstname").val("");
+							$("#lastname").val("");
+							$("#Spassword").val("");
+							$("#email").val("");
 
 						}
 
@@ -184,12 +142,11 @@
 					function invalidEmail(){
 
 						alert("There was a problem: the email is in an invalid format.");
-						firstnameinit();
-						lastnameinit();
-						usernameinit();
-						passwordinit();
-						emailinit();
-
+						$("#Susername").val("");
+						$("#firstname").val("");
+						$("#lastname").val("");
+						$("#Spassword").val("");
+						$("#email").val("");
 					}
 
 					invalidEmail();
@@ -203,112 +160,6 @@
 				signup();
 				e.preventDefault();
 				return false;
-			});
-
-			//Focus in and focus out actions for the sign up boxes
-			$("#firstname").focus(function(){
-
-				if("First Name".localeCompare($("#firstname").val()) == 0){
-
-					$("#firstname").val("");
-					$("#firstname").css("color", "black");
-
-				}
-
-			});
-
-			$("#firstname").focusout(function(){
-
-				if("".localeCompare($("#firstname").val()) == 0){
-
-					firstnameinit();
-
-				}
-
-			});
-
-			$("#lastname").focus(function(){
-
-				if("Last Name".localeCompare($("#lastname").val()) == 0){
-
-					$("#lastname").val("");
-					$("#lastname").css("color", "black");
-
-				}
-				
-			});
-
-			$("#lastname").focusout(function(){
-
-				if("".localeCompare($("#lastname").val()) == 0){
-
-					lastnameinit();
-
-				}
-
-			});
-
-			$("#Susername").focus(function(){
-
-				if("User Name".localeCompare($("#Susername").val()) == 0){
-
-					$("#Susername").val("");
-					$("#Susername").css("color", "black");
-
-				}
-				
-			});
-
-			$("#Susername").focusout(function(){
-
-				if("".localeCompare($("#Susername").val()) == 0){
-
-					usernameinit();
-
-				}
-
-			});
-
-			$("#Spassword").focus(function(){
-
-				if("Password".localeCompare($("#Spassword").val()) == 0){
-
-					$("#Spassword").val("");
-					$("#Spassword").css("color", "black");
-
-				}
-				
-			});
-
-			$("#Spassword").focusout(function(){
-
-				if("".localeCompare($("#Spassword").val()) == 0){
-
-					passwordinit();
-
-				}
-
-			});
-
-			$("#email").focus(function(){
-
-				if("Email Address".localeCompare($("#email").val()) == 0){
-
-					$("#email").val("");
-					$("#email").css("color", "black");
-
-				}
-				
-			});
-
-			$("#email").focusout(function(){
-
-				if("".localeCompare($("#email").val()) == 0){
-
-					emailinit();
-
-				}
-
 			});
 
 		});
@@ -340,31 +191,31 @@
 					<table style="border-spacing: 10px;">
 						<tr>
 							<td>
-								<input id="firstname" type=text size="30" value="First Name"/>
+								<input id="firstname" type=text size="30" placeholder="First Name"/>
 							</td>
 						</tr>
 
 						<tr>
 							<td>
-								<input id="lastname" type=text size="30" value="Last Name"/>
+								<input id="lastname" type=text size="30" placeholder="Last Name"/>
 							</td>
 						</tr>
 
 						<tr>
 							<td>
-								<input id="Susername" type=text size="30" value="User Name"/>
+								<input id="Susername" type=text size="30" placeholder="User Name"/>
 							</td>
 						</tr>
 
 						<tr>
 							<td>
-								<input id="Spassword" type=password size="30" value="Password"/>
+								<input id="Spassword" type=password size="30" placeholder="Password"/>
 							</td>
 						</tr>
 
 						<tr>
 							<td>
-								<input id="email" type=text size="30" value="Email Address" autocomplete="off"/>
+								<input id="email" type=text size="30" placeholder="Email Address" autocomplete="off"/>
 							</td>
 						</tr>
 
