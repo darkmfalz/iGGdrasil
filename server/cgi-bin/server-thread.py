@@ -226,6 +226,7 @@ def viewThread():
 		parent = thread
 
 		while proceed:
+			proceed = False
 			for a in c.execute('select * from comments'):
 				proceed = False
 			
@@ -236,7 +237,12 @@ def viewThread():
 					date = a[2]
 					body = a[3].decode('hex')
 					break
-			
+
+			image = "/img/users/v.jpg"
+
+			for a in c.execute('select * from accounts where username=?', [username.encode('hex')]):
+				image = a[3].decode('hex')
+
 			if proceed:
 				print '''<tr>
 							<td>
@@ -452,6 +458,7 @@ else:
 			parent = thread
 
 			while proceed:
+				proceed = False
 				for a in c.execute('select * from comments'):
 					proceed = False
 				
@@ -462,6 +469,11 @@ else:
 						date = a[2]
 						body = a[3].decode('hex')
 						break
+
+				image = "/img/users/v.jpg"
+
+				for a in c.execute('select * from accounts where username=?', [username.encode('hex')]):
+					image = a[3].decode('hex')
 				
 				if proceed:
 					print '''<tr>
