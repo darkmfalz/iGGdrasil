@@ -130,48 +130,6 @@ def viewThread():
 		print
 
 		print '''
-			<html>
-			<head>
-				<title>
-						''' + title + ''' | iGG
-				</title>
-				<link rel="stylesheet" type="text/css" href="../main.css">
-				<link rel="shortcut icon" href="../img/icons/favicon.ico" type="image/x-icon">
-				<link rel="icon" href="../img/icons/favicon.ico" type="image/x-icon">
-				
-				<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-				<script>
-					$(document).ready(function(){
-
-						$.ajax({
-
-							url: "/cgi-bin/html-banner.py",
-
-							data: {
-							},
-
-							type: "GET",
-
-							dataType: "html",
-
-							success: function(data){
-
-								$("div.banner").html(data);
-
-							}
-
-						});
-
-					});
-				</script>
-
-				<script src="/js-bin/client-login-logout.js" type="text/javascript">
-				</script>
-			</head>
-			<body>
-				<div class="wrapper">
-					<div class="banner">
-					</div>
 
 					<div class="mainpage">
 						<table class="thread">
@@ -283,18 +241,7 @@ def viewThread():
 				
 		print '''
 						</table>
-					</div>
-				</div>
-
-				<div class="footer" xmlns:dc="http://purl.org/dc/elements/1.1/">
-					<img src="/img/icons/hr.png" style="vertical-align:middle">
-					<p id="copyright" property="dc:rights">&copy;
-						<span property="dc:dateCopyrighted">2015</span>
-						<span property="dc:publisher">Adeeb Sheikh</span>
-					</p>
-				</div>
-			</body>
-		</html>'''
+					</div>'''
 	else:
 		redirect()
 
@@ -351,51 +298,6 @@ else:
 			print
 
 			print '''
-				<html>
-				<head>
-					<title>
-							''' + title + ''' | iGG
-					</title>
-					<link rel="stylesheet" type="text/css" href="../main.css">
-					<link rel="shortcut icon" href="../img/icons/favicon.ico" type="image/x-icon">
-					<link rel="icon" href="../img/icons/favicon.ico" type="image/x-icon">
-					
-					<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-					<script>
-						$(document).ready(function(){
-
-							$.ajax({
-
-								url: "/cgi-bin/html-banner.py",
-
-								data: {
-								},
-
-								type: "GET",
-
-								dataType: "html",
-
-								success: function(data){
-
-									$("div.banner").html(data);
-
-								}
-
-							});
-
-						});
-					</script>
-
-					<script src="/js-bin/client-login-logout.js" type="text/javascript">
-					</script>
-
-					<script src="/js-bin/client-comment.js" type="text/javascript">
-					</script>
-				</head>
-				<body>
-					<div class="wrapper">
-						<div class="banner">
-						</div>
 
 						<input id="threadparent" type=text size="30" style="display:none; visibility: hidden;" value="''' + thread + '''"/>
 
@@ -547,18 +449,7 @@ else:
 								</td>
 							</tr>
 						</table>
-					</div>
-				</div>
-
-				<div class="footer" xmlns:dc="http://purl.org/dc/elements/1.1/">
-					<img src="/img/icons/hr.png" style="vertical-align:middle">
-					<p id="copyright" property="dc:rights">&copy;
-						<span property="dc:dateCopyrighted">2015</span>
-						<span property="dc:publisher">Adeeb Sheikh</span>
-					</p>
-				</div>
-			</body>
-		</html>'''
+					</div>'''
 		else:
 			redirect()
 
