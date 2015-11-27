@@ -13,14 +13,17 @@ cgitb.enable()
 conn = sqlite3.connect('users.db')
 c = conn.cursor()
 
+conn2 = sqlite3.connect('users.db')
+c2 = conn.cursor()
+
 def printThread(r):
 	image = ""
 
-	for a in c.execute('select * from accounts where username=?', [r[1]]):
+	for a in c2.execute('select * from accounts where username=?', [r[1]]):
 		image = a[3].decode('hex')
 
 	print '''
-	<table>
+	<table class="post-block">
 		<tr>
 			<td>
 				<a href="/users/''' + r[1].decode('hex') + '''">
@@ -65,11 +68,14 @@ def printThread(r):
 print 'Content-Type: text/html'
 print
 
-print "<table>"
+print "<table class='thread'>"
+
 for r in c.execute('select * from grammars order by created desc'):
 	print "<tr><td>"
 	printThread(r)
 	print "</td></tr>"
+
 print "</table>"
 
 conn.close()
+conn2.close()

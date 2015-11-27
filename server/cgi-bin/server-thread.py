@@ -111,6 +111,7 @@ def viewThread():
 			date = r[2]
 			body = r[3].decode('hex')
 			title = r[4].decode('hex')
+			break
 
 	if proceed:
 		#Find the user and retrieve the values
@@ -173,11 +174,11 @@ def viewThread():
 					</div>
 
 					<div class="mainpage">
-						<table>
+						<table class="thread">
 							<tr>
 								<td>
 									<div id="parent">
-										<table>
+										<table class="post-block">
 											<tr>
 												<td>
 													<a href="/users/''' + username + '''">
@@ -240,9 +241,9 @@ def viewThread():
 				print '''<tr>
 							<td>
 								<div class="comment">
-									<table>
+									<table class="post-block">
 										<tr>
-											<td>''' + '''
+											<td>
 												<a href="/users/''' + username + '''" style="text-decoration:none;color:black;">
 													<div class="circle-cropper">
 														<img src="''' + image + '''" class="rounded" />
@@ -308,8 +309,8 @@ else:
 	#If the cookie is 'username'
 	if 'username' in cookie:
 		username = ""
-		for r in c.execute('select * from loggedin where sessionid=?', [cookie['username'].value]):
-			username = r[1].decode('hex')
+		for d in c.execute('select * from loggedin where sessionid=?', [cookie['username'].value]):
+			username = d[1].decode('hex')
 		#If the username submitted in the form is on the cookie
 		viewThread()
 	else:
