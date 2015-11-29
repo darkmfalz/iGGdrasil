@@ -166,7 +166,7 @@ html, body{
 				padding-bottom: 15px;
 			}
 
-				.thread td{
+				.threadnm td{
 					padding: 5px;
 				}
 
@@ -183,6 +183,27 @@ html, body{
 					.post-block tr{
 						padding: 10px;
 					}
+
+			.profile{
+				border-collapse: separate;
+				border-spacing: 15px;
+				table-layout: fixed;
+			}
+
+				.profile-block{
+					background-color:#F1F8E9;
+					border-radius: 10px;
+					border-collapse: separate;
+				}
+
+				#infopanel{
+					padding: 15px;
+					float: left;
+				}
+
+				.profile td{
+					vertical-align: top;
+				}
 
 			.input-block{
 				background-color:#F1F8E9;

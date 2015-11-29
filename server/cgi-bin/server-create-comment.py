@@ -16,6 +16,7 @@ cgitb.enable()
 form = cgi.FieldStorage()
 input_comment = form['input_comment'].value
 input_parent = form['input_parent'].value
+input_root = form['input_root'].value
 
 #Connect to database
 conn = sqlite3.connect('users.db')
@@ -72,7 +73,7 @@ else:
 					commentid = username + nowString
 					commentid = commentid.encode('hex')
 
-			c.execute("insert into comments values (?, ?, datetime('NOW'), ?, ?)", [commentid, r[0], input_comment.encode('hex'), input_parent])
+			c.execute("insert into comments values (?, ?, datetime('NOW'), ?, ?, ?)", [commentid, r[0], input_comment.encode('hex'), input_parent, input_root])
 			conn.commit()
 
 			print

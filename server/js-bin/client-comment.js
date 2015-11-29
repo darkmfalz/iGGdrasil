@@ -5,13 +5,16 @@ $(document).on('submit', '#createnewcomment', function(e){
 	var parent = $("#commentparent").val();
 	var ithread = $("#threadparent").val();
 
+	console.log(ithread);
+
 	$.ajax({
 
 		url: "/cgi-bin/server-create-comment.py",
 
 		data: {
 			input_comment: comment,
-			input_parent: parent
+			input_parent: parent,
+			input_root: ithread
 		},
 
 		type: "POST",

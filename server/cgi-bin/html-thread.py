@@ -130,8 +130,6 @@ def viewThread():
 		print
 
 		print '''
-
-					<div class="mainpage">
 						<table class="thread">
 							<tr>
 								<td>
@@ -200,7 +198,7 @@ def viewThread():
 
 			for a in c.execute('select * from accounts where username=?', [username.encode('hex')]):
 				image = a[3].decode('hex')
-		
+
 			if proceed:
 				print '''<tr>
 							<td>
@@ -246,8 +244,7 @@ def viewThread():
 						</tr>'''
 				
 		print '''
-						</table>
-					</div>'''
+						</table>'''
 	else:
 		redirect()
 
@@ -304,10 +301,6 @@ else:
 			print
 
 			print '''
-
-						<input id="threadparent" type=text size="30" style="display:none; visibility: hidden;" value="''' + thread + '''"/>
-
-						<div class="mainpage">
 							<table class="thread">
 								<tr>
 									<td>
@@ -371,12 +364,12 @@ else:
 						date = a[2]
 						body = a[3].decode('hex')
 						break
-				
+
 				image = "/img/users/v.jpg"
 
 				for a in c.execute('select * from accounts where username=?', [username.encode('hex')]):
 					image = a[3].decode('hex')
-
+				
 				if proceed:
 					print '''<tr>
 								<td>
@@ -460,8 +453,7 @@ else:
 									</div>
 								</td>
 							</tr>
-						</table>
-					</div>'''
+						</table>'''
 		else:
 			redirect()
 
