@@ -128,6 +128,13 @@ html, body{
 			padding-top: 20px;
 		}
 
+			#tree {
+				width: 80%;
+				height: 100%;
+				margin: auto;
+				border: 1px solid lightgray;
+			}
+
 			/* Credit for the crop: */
 			/* http://stackoverflow.com/questions/11552380/how-to-automatically-crop-and-center-an-image */
 			.center-cropped {

@@ -136,10 +136,12 @@ def viewThread():
 						''' + title + ''' | iGG
 				</title>
 				<link rel="stylesheet" type="text/css" href="../main.css">
+				<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.10.0/vis.min.css">
 				<link rel="shortcut icon" href="../img/icons/favicon.ico" type="image/x-icon">
 				<link rel="icon" href="../img/icons/favicon.ico" type="image/x-icon">
 				
 				<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+				<script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.10.0/vis.min.js"></script>
 				<script>
 					$(document).ready(function(){
 
@@ -166,6 +168,9 @@ def viewThread():
 				</script>
 
 				<script src="/js-bin/client-login-logout.js" type="text/javascript">
+				</script>
+
+				<script src="/js-bin/client-tree.js" type="text/javascript">
 				</script>
 			</head>
 			<body>
@@ -363,10 +368,12 @@ else:
 							''' + title + ''' | iGG
 					</title>
 					<link rel="stylesheet" type="text/css" href="../main.css">
+					<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.10.0/vis.min.css">
 					<link rel="shortcut icon" href="../img/icons/favicon.ico" type="image/x-icon">
 					<link rel="icon" href="../img/icons/favicon.ico" type="image/x-icon">
 					
 					<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+					<script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.10.0/vis.min.js"></script>
 					<script>
 						$(document).ready(function(){
 
@@ -397,13 +404,21 @@ else:
 
 					<script src="/js-bin/client-comment.js" type="text/javascript">
 					</script>
+
+					<script src="/js-bin/client-tree.js" type="text/javascript">
+					</script>
 				</head>
+
 				<body>
 					<div class="wrapper">
 						<div class="banner">
 						</div>
 
 						<input id="threadparent" type=text size="30" style="display:none; visibility: hidden;" value="''' + thread + '''"/>
+
+						<br>
+						<div id="tree-container"></div>
+						<form action="" id="parse" style="width: 25%; margin: 0 auto;"><button style="width: 100%;">Parse</button></form>
 
 						<div class="mainpage">
 							<table class="thread">
