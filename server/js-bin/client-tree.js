@@ -2,6 +2,7 @@ $(document).on('submit', '#parse', function(e){
 
 	console.log('hi');
 	document.getElementById("tree-container").innerHTML = "<div id='tree'></div>";
+	$("#toparse").val("");
 	draw();
 
 	e.preventDefault();

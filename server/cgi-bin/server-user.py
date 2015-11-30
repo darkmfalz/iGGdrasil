@@ -266,7 +266,7 @@ def viewProfile():
 			print "</td></tr>"
 
 		if(gnexist):
-			print "<tr style='padding: 15px;'><td><h3>No grammars to show!</h3></td></tr>"
+			print "<tr><td><h3>No grammars to show!</h3></td></tr>"
 		print '''	</table>
 		</td>
 
@@ -310,7 +310,7 @@ def viewProfile():
 			print "</td></tr><tr>"
 
 		if(cnexist):
-			print "<tr style='padding: 15px;'><td><h3>No comments to show!</h3></td></tr>"
+			print "<tr><td><h3>No comments to show!</h3></td></tr>"
 
 		print '''						</table>
 							</td>
@@ -575,7 +575,7 @@ else:
 				print "</td></tr>"
 
 			if(gnexist):
-				print "<tr style='padding: 15px;'><td><h3>No grammars to show!</h3></td></tr>"
+				print "<tr><td><h3>No grammars to show!</h3></td></tr>"
 			print '''	</table>
 			</td>
 
@@ -619,7 +619,7 @@ else:
 				print "</td></tr><tr>"
 
 			if(cnexist):
-				print "<tr style='padding: 15px;'><td><h3>No comments to show!</h3></td></tr>"
+				print "<tr><td><h3>No comments to show!</h3></td></tr>"
 
 			print '''						</table>
 								</td>
@@ -639,5 +639,7 @@ else:
 		</html>'''
 		else:
 			viewProfile()
+	else:
+		viewProfile()
 
 conn.close()

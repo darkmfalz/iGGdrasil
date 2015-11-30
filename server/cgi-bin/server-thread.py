@@ -178,6 +178,18 @@ def viewThread():
 					<div class="banner">
 					</div>
 
+					<input id="threadparent" type=text size="30" style="display:none; visibility: hidden;" value="''' + thread + '''"/>
+
+					<br>
+					<div id="tree-container" style="display: flex; justify-content: space-around;"></div>
+					<form action="" id="parse" style="width: 25%; margin: 0 auto; display: flex; justify-content: space-around;">
+						<input id="toparse" type=text size="30" placeholder="What do you want to parse?"/>
+						
+						<button style="width: 100%;">
+							Parse
+						</button>
+					</form>
+
 					<div class="mainpage">
 						<table class="thread">
 							<tr>
@@ -417,8 +429,14 @@ else:
 						<input id="threadparent" type=text size="30" style="display:none; visibility: hidden;" value="''' + thread + '''"/>
 
 						<br>
-						<div id="tree-container"></div>
-						<form action="" id="parse" style="width: 25%; margin: 0 auto;"><button style="width: 100%;">Parse</button></form>
+						<div id="tree-container" style="display: flex; justify-content: space-around;"></div>
+						<form action="" id="parse" style="width: 25%; margin: 0 auto; display: flex; justify-content: space-around;">
+							<input id="toparse" type=text size="30" placeholder="What do you want to parse?"/>
+
+							<button style="width: 100%;">
+								Parse
+							</button>
+						</form>
 
 						<div class="mainpage">
 							<table class="thread">
