@@ -1,3 +1,3 @@
 [submodule "cfgtojson"]
-	path = cfgtojson
+	path = server/cfgtojson
 	url = https://github.com/Numerius/cfgtojson
