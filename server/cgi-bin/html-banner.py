@@ -106,6 +106,23 @@ else:
 						<div class="logoutdiv">
 							<table class="logintable">
 								<tr>
+
+									<td>
+										<a href="/users/''' + username + '''">
+											<div class="banner-button">
+												<img src="/img/icons/email-4096-black.png" />
+											</div>
+										</a>
+									</td>
+
+									<td>
+										<a href="/users/''' + username + '''">
+											<div class="banner-button">
+												<img src="/img/icons/gear.png" />
+											</div>
+										</a>
+									</td>
+
 									<td>
 										<a href="/users/''' + username +'''">
 											<div class="circle-cropper">

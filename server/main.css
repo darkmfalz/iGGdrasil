@@ -95,6 +95,20 @@ html, body{
 							text-decoration: underline;
 						}
 
+					.banner-button{
+						width: 20px;
+						opacity: .4;
+					}
+
+						.banner-button img{
+							width: 20px;
+						}
+
+					.banner-button:hover{
+						width: 20px;
+						opacity: .6;
+					}
+
 					/* Credit for the crop: */
 					/* http://stackoverflow.com/questions/26421274/css-circular-cropping-of-rectangle-image */
 					.circle-cropper {
