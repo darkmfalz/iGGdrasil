@@ -74,6 +74,8 @@ function draw(){
 
 			$("#tree").removeClass("loading");
 
+			console.log(data);
+
 			var count = 1;
 			var queue = [];
 			var idqueue = [];
@@ -96,7 +98,14 @@ function draw(){
 						queue.push(current.content[i]);
 						queuelength++;
 						idqueue.push(count);
-						nodes.add([{id: count, label: current.content[i].tag}]);
+						if(current.content[i].tag != null){
+							console.log(current.content[i].tag);
+							nodes.add([{id: count, label: current.content[i].tag}]);
+						}
+						else{
+							console.log(current.content[i]);
+							nodes.add([{id: count, label: current.content[i]}]);
+						}
 						edges.add([{from: id, to: count}]);
 						count++;
 					}
@@ -120,7 +129,9 @@ function draw(){
 				},
 				interaction:{
 					dragNodes: false,
-					dragView: false,
+					dragView: true,
+					zoomView: true,
+					navigationButtons: true,
 				},
 				nodes:{
 					color:{
@@ -129,6 +140,11 @@ function draw(){
 					},
 					font:{
 						color: '#FFFFFF'
+					},
+					scaling:{
+						label:{
+							enabled: true
+						}
 					}
 				},
 			};
