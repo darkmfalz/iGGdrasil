@@ -15,6 +15,13 @@ html, body{
 		padding-bottom: 50px;
 	}
 
+		.loading{
+			background: rgba( 255, 255, 255, .5 ) 
+				url('/img/icons/ajax-loader.gif') 
+				50% 50% 
+				no-repeat;
+		}
+
 		/*Courtesy of http://www.bestcssbuttongenerator.com*/
 		button {
 			white-space:nowrap;

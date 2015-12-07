@@ -110,6 +110,8 @@ def viewThread():
 			username = r[1].decode('hex')
 			date = r[2]
 			body = r[3].decode('hex')
+			body = body.replace("<", "&lt;")
+			body = body.replace(">", "&gt;")
 			title = r[4].decode('hex')
 			break
 
@@ -253,6 +255,8 @@ def viewThread():
 					username = a[1].decode('hex')
 					date = a[2]
 					body = a[3].decode('hex')
+					body = body.replace("<", "&lt;")
+					body = body.replace(">", "&gt;")
 					break
 
 			image = "/img/users/v.jpg"
@@ -354,6 +358,8 @@ else:
 				username = r[1].decode('hex')
 				date = r[2]
 				body = r[3].decode('hex')
+				body = body.replace("<", "&lt;")
+				body = body.replace(">", "&gt;")
 				title = r[4].decode('hex')
 				break
 
@@ -501,6 +507,8 @@ else:
 						username = a[1].decode('hex')
 						date = a[2]
 						body = a[3].decode('hex')
+						body = body.replace("<", "&lt;")
+						body = body.replace(">", "&gt;")
 						break
 
 				image = "/img/users/v.jpg"

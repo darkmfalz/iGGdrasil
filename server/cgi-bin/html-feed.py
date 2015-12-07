@@ -22,6 +22,10 @@ def printThread(r):
 	for a in c2.execute('select * from accounts where username=?', [r[1]]):
 		image = a[3].decode('hex')
 
+	body = r[3].decode('hex')
+	body = body.replace("<", "&lt;")
+	body = body.replace(">", "&gt;")
+
 	print '''
 	<table class="post-block">
 		<tr>
@@ -51,7 +55,7 @@ def printThread(r):
 			</td>
 
 			<td>
-				<p style="white-space:pre-wrap;">''' + r[3].decode('hex') + '''</p>
+				<p style="white-space:pre-wrap;">''' + body + '''</p>
 			</td>
 		</tr>
 

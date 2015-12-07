@@ -10,7 +10,8 @@ $(document).on('submit', '#parse', function(e){
 });
 
 function draw(){
-	// create an array with nodes
+
+	/*// create an array with nodes
 	var nodes = new vis.DataSet([
 		{id: 1, label: 'S'},
 		{id: 2, label: '"-"'},
@@ -41,38 +42,102 @@ function draw(){
 		{from: 9, to: 11},
 		{from: 10, to: 12},
 		{from: 12, to: 13},
+	]);*/
+
+	// create an array with nodes
+	var nodes = new vis.DataSet([
 	]);
 
-	// create a network
-	var container = document.getElementById('tree');
+	// create an array with edges
+	var edges = new vis.DataSet([
+	]);
 
-	// provide the data in the vis format
-	var data = {
-		nodes: nodes,
-		edges: edges
-	};
-	var options = {
-		layout: {
-			hierarchical: {sortMethod: 'directed',}
+	var threadid = $("#threadparent").val();
+
+	console.log(threadid);
+
+	$("#tree").addClass("loading");
+
+	$.ajax({
+
+		url: "/cgi-bin/server-jar.py",
+
+		data: {
+			thread: threadid
 		},
-		physics:{
-			enabled: false,
-		},
-		interaction:{
-			dragNodes: false,
-			dragView: false,
-		},
-		nodes:{
-			color:{
-				background: '#8b9dc3',
-				border: '#637aad'
-			},
-			font:{
-				color: '#FFFFFF'
+
+		type: "POST",
+
+		dataType: "json",
+
+		success: function(data){
+
+			$("#tree").removeClass("loading");
+
+			var count = 1;
+			var queue = [];
+			var idqueue = [];
+			var queuelength = 0;
+
+			queue.push(data);
+			queuelength++;
+			idqueue.push(count);
+			nodes.add([{id: count, label: data.tag}]);
+			count++;
+			var currentid = 1;
+
+			while(queuelength != 0){
+				var current = queue.shift();
+				queuelength--;
+				var id = idqueue.shift();
+
+				if(current.content != null){
+					for(var i = 0; i < current.content.length; i++){
+						queue.push(current.content[i]);
+						queuelength++;
+						idqueue.push(count);
+						nodes.add([{id: count, label: current.content[i].tag}]);
+						edges.add([{from: id, to: count}]);
+						count++;
+					}
+				}
 			}
-		},
-	};
 
-	// initialize your network!
-	var network = new vis.Network(container, data, options);
+			// create a network
+			var container = document.getElementById('tree');
+
+			// provide the data in the vis format
+			var datum = {
+				nodes: nodes,
+				edges: edges
+			};
+			var options = {
+				layout: {
+					hierarchical: {sortMethod: 'directed',}
+				},
+				physics:{
+					enabled: false,
+				},
+				interaction:{
+					dragNodes: false,
+					dragView: false,
+				},
+				nodes:{
+					color:{
+						background: '#8b9dc3',
+						border: '#637aad'
+					},
+					font:{
+						color: '#FFFFFF'
+					}
+				},
+			};
+
+			// initialize your network!
+			var network = new vis.Network(container, datum, options);
+
+		}
+
+	});
+
 }
