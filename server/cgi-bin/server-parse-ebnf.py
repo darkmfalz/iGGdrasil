@@ -23,6 +23,7 @@ for r in c.execute('select * from grammars'):
 
 	if grammarid == thread:
 		grammar = r[3].decode('hex')
+		grammar = grammar.replace("\n", " ")
 		break
 
 #Note: can't use '-' or '.' sign

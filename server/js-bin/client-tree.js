@@ -2,14 +2,16 @@ $(document).on('submit', '#parse', function(e){
 
 	console.log('hi');
 	document.getElementById("tree-container").innerHTML = "<div id='tree'></div>";
+	if("".localeCompare($("#toparse").val()) == 0){
+		drawParseEBNF();
+	}
 	$("#toparse").val("");
-	draw();
 
 	e.preventDefault();
 	return false;
 });
 
-function draw(){
+function drawParseEBNF(){
 
 	/*// create an array with nodes
 	var nodes = new vis.DataSet([
@@ -60,7 +62,7 @@ function draw(){
 
 	$.ajax({
 
-		url: "/cgi-bin/server-jar.py",
+		url: "/cgi-bin/server-parse-ebnf.py",
 
 		data: {
 			thread: threadid
@@ -71,8 +73,6 @@ function draw(){
 		dataType: "json",
 
 		success: function(data){
-
-			$("#tree").removeClass("loading");
 
 			console.log(data);
 
@@ -112,6 +112,8 @@ function draw(){
 				}
 			}
 
+			console.log(count);
+
 			// create a network
 			var container = document.getElementById('tree');
 
@@ -122,10 +124,17 @@ function draw(){
 			};
 			var options = {
 				layout: {
-					hierarchical: {sortMethod: 'directed',}
+					hierarchical: {
+						sortMethod: 'directed',
+					}
 				},
 				physics:{
-					enabled: false,
+					hierarchicalRepulsion: {
+						nodeDistance: 150
+					},
+					stabilization: {
+						iterations: 2500
+					}
 				},
 				interaction:{
 					dragNodes: false,
@@ -147,10 +156,14 @@ function draw(){
 						}
 					}
 				},
+				edges:{
+					smooth: false
+				}
 			};
 
 			// initialize your network!
 			var network = new vis.Network(container, datum, options);
+			$("#tree").removeClass("loading");
 
 		}
 

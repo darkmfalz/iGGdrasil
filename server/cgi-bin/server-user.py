@@ -220,6 +220,9 @@ def viewProfile():
 
 		for r in c.execute('select * from grammars where username=? order by created desc', [username.encode('hex')]):
 			gnexist = False
+			body = r[3].decode('hex')
+			body = body.replace("<", "&lt;")
+			body = body.replace(">", "&gt;")
 			print "<tr><td>"
 			print '''
 			<table class="post-block">
@@ -250,7 +253,7 @@ def viewProfile():
 					</td>
 
 					<td>
-						<p style="white-space:pre-wrap;">''' + r[3].decode('hex') + '''</p>
+						<p style="white-space:pre-wrap;">''' + body + '''</p>
 					</td>
 				</tr>
 
@@ -282,6 +285,10 @@ def viewProfile():
 			for a in c2.execute('select * from grammars where id=?', [r[5]]):
 				threadtitle = a[4].decode('hex')
 
+			body = r[3].decode('hex')
+			body = body.replace("<", "&lt;")
+			body = body.replace(">", "&gt;")
+
 			print '<tr><td>'
 			print '''
 			<table class="post-block">
@@ -297,7 +304,7 @@ def viewProfile():
 
 				<tr>
 					<td>
-						<p style="white-space:pre-wrap;">''' + r[3].decode('hex') + '''</p>
+						<p style="white-space:pre-wrap;">''' + body + '''</p>
 					</td>
 				</tr>
 
@@ -529,6 +536,9 @@ else:
 
 			for r in c.execute('select * from grammars where username=? order by created desc', [username.encode('hex')]):
 				gnexist = False
+				body = r[3].decode('hex')
+				body = body.replace("<", "&lt;")
+				body = body.replace(">", "&gt;")
 				print "<tr><td>"
 				print '''
 				<table class="post-block">
@@ -559,7 +569,7 @@ else:
 						</td>
 
 						<td>
-							<p style="white-space:pre-wrap;">''' + r[3].decode('hex') + '''</p>
+							<p style="white-space:pre-wrap;">''' + body + '''</p>
 						</td>
 					</tr>
 
@@ -591,6 +601,10 @@ else:
 				for a in c2.execute('select * from grammars where id=?', [r[5]]):
 					threadtitle = a[4].decode('hex')
 
+				body = r[3].decode('hex')
+				body = body.replace("<", "&lt;")
+				body = body.replace(">", "&gt;")
+
 				print '<tr><td>'
 				print '''
 				<table class="post-block">
@@ -606,7 +620,7 @@ else:
 
 					<tr>
 						<td>
-							<p style="white-space:pre-wrap;">''' + r[3].decode('hex') + '''</p>
+							<p style="white-space:pre-wrap;">''' + body + '''</p>
 						</td>
 					</tr>
 
