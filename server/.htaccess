@@ -12,3 +12,4 @@ RewriteRule		^signup$			/signup.html
 RewriteRule		^users/([^/]+)$		/cgi-bin/server-user.py?username=$1
 RewriteRule		^threads/([^/]+)$		/cgi-bin/server-thread.py?thread=$1
 RewriteRule		^passwordreset$		/drop.html
+RewriteRule		^help$				/help.html

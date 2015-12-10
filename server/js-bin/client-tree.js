@@ -5,6 +5,9 @@ $(document).on('submit', '#parse', function(e){
 	if("".localeCompare($("#toparse").val()) == 0){
 		drawParseEBNF();
 	}
+	else{
+		drawParseGrammar();
+	}
 	$("#toparse").val("");
 
 	e.preventDefault();
@@ -12,39 +15,6 @@ $(document).on('submit', '#parse', function(e){
 });
 
 function drawParseEBNF(){
-
-	/*// create an array with nodes
-	var nodes = new vis.DataSet([
-		{id: 1, label: 'S'},
-		{id: 2, label: '"-"'},
-		{id: 3, label: 'FN'},
-		{id: 4, label: 'DL'},
-		{id: 5, label: '"."'},
-		{id: 6, label: 'DL'},
-		{id: 7, label: 'D'},
-		{id: 8, label: '"3"'},
-		{id: 9, label: 'D'},
-		{id: 10, label: 'DL'},
-		{id: 11, label: '"1"'},
-		{id: 12, label: 'D'},
-		{id: 13, label: '"4"'}
-	]);
-
-	// create an array with edges
-	var edges = new vis.DataSet([
-		{from: 1, to: 2},
-		{from: 1, to: 3},
-		{from: 3, to: 4},
-		{from: 3, to: 5},
-		{from: 3, to: 6},
-		{from: 4, to: 7},
-		{from: 7, to: 8},
-		{from: 6, to: 9},
-		{from: 6, to: 10},
-		{from: 9, to: 11},
-		{from: 10, to: 12},
-		{from: 12, to: 13},
-	]);*/
 
 	// create an array with nodes
 	var nodes = new vis.DataSet([
@@ -76,95 +46,275 @@ function drawParseEBNF(){
 
 			console.log(data);
 
-			var count = 1;
-			var queue = [];
-			var idqueue = [];
-			var queuelength = 0;
+			if(data.success == true){
 
-			queue.push(data);
-			queuelength++;
-			idqueue.push(count);
-			nodes.add([{id: count, label: data.tag}]);
-			count++;
-			var currentid = 1;
+				var count = 1;
+				var queue = [];
+				var idqueue = [];
+				var queuelength = 0;
 
-			while(queuelength != 0){
-				var current = queue.shift();
-				queuelength--;
-				var id = idqueue.shift();
+				queue.push(data.data);
+				queuelength++;
+				idqueue.push(count);
+				nodes.add([{id: count, label: data.data.tag}]);
+				count++;
+				var currentid = 1;
 
-				if(current.content != null){
-					for(var i = 0; i < current.content.length; i++){
-						queue.push(current.content[i]);
+				while(queuelength != 0){
+					var current = queue.shift();
+					queuelength--;
+					var id = idqueue.shift();
+
+					if(current.content != null){
+						for(var i = 0; i < current.content.length; i++){
+							queue.push(current.content[i]);
+							queuelength++;
+							idqueue.push(count);
+							if(current.content[i].tag != null){
+								console.log(current.content[i].tag);
+								nodes.add([{id: count, label: current.content[i].tag}]);
+							}
+							else{
+								console.log(current.content[i]);
+								nodes.add([{id: count, label: current.content[i]}]);
+							}
+							edges.add([{from: id, to: count}]);
+							count++;
+						}
+					}
+					else if(current.tag != null){
+						
+						queue.push("\u03B5");
 						queuelength++;
 						idqueue.push(count);
-						if(current.content[i].tag != null){
-							console.log(current.content[i].tag);
-							nodes.add([{id: count, label: current.content[i].tag}]);
-						}
-						else{
-							console.log(current.content[i]);
-							nodes.add([{id: count, label: current.content[i]}]);
-						}
+						console.log("\u03B5");
+						nodes.add([{id: count, label: "\u03B5"}]);
 						edges.add([{from: id, to: count}]);
 						count++;
+
 					}
 				}
+
+				console.log(count);
+
+				// create a network
+				var container = document.getElementById('tree');
+
+				// provide the data in the vis format
+				var datum = {
+					nodes: nodes,
+					edges: edges
+				};
+				var options = {
+					layout: {
+						hierarchical: {
+							sortMethod: 'directed',
+						}
+					},
+					physics:{
+						hierarchicalRepulsion: {
+							nodeDistance: 150
+						},
+						stabilization: {
+							iterations: 2500
+						}
+					},
+					interaction:{
+						dragNodes: false,
+						dragView: true,
+						zoomView: true,
+						navigationButtons: true,
+					},
+					nodes:{
+						color:{
+							background: '#8b9dc3',
+							border: '#637aad'
+						},
+						font:{
+							color: '#FFFFFF'
+						},
+						scaling:{
+							label:{
+								enabled: true
+							}
+						}
+					},
+					edges:{
+						smooth: true
+					}
+				};
+
+				// initialize your network!
+				var network = new vis.Network(container, datum, options);
+				$("#tree").removeClass("loading");
+
+			}
+			else{
+				//$("#tree").removeClass("loading");
+				$("#tree").addClass("error");
+				alert(data.message);
 			}
 
-			console.log(count);
+		},
 
-			// create a network
-			var container = document.getElementById('tree');
+		error: function(){
+			$("#tree").addClass("error");
+			alert("500 Error: Your grammar isn't really a grammar.");
+		}
 
-			// provide the data in the vis format
-			var datum = {
-				nodes: nodes,
-				edges: edges
-			};
-			var options = {
-				layout: {
-					hierarchical: {
-						sortMethod: 'directed',
-					}
-				},
-				physics:{
-					hierarchicalRepulsion: {
-						nodeDistance: 150
-					},
-					stabilization: {
-						iterations: 2500
-					}
-				},
-				interaction:{
-					dragNodes: false,
-					dragView: true,
-					zoomView: true,
-					navigationButtons: true,
-				},
-				nodes:{
-					color:{
-						background: '#8b9dc3',
-						border: '#637aad'
-					},
-					font:{
-						color: '#FFFFFF'
-					},
-					scaling:{
-						label:{
-							enabled: true
+	});
+
+}
+
+function drawParseGrammar(){
+
+	// create an array with nodes
+	var nodes = new vis.DataSet([
+	]);
+
+	// create an array with edges
+	var edges = new vis.DataSet([
+	]);
+
+	var threadid = $("#threadparent").val();
+	var input = $("#toparse").val();
+
+	console.log(threadid);
+	console.log(input);
+
+	$("#tree").addClass("loading");
+
+	$.ajax({
+
+		url: "/cgi-bin/server-parse-grammar.py",
+
+		data: {
+			thread: threadid,
+			value: input,
+		},
+
+		type: "POST",
+
+		dataType: "json",
+
+		success: function(data){
+
+			console.log(data);
+
+			if(data.success == true){
+
+				var count = 1;
+				var queue = [];
+				var idqueue = [];
+				var queuelength = 0;
+
+				queue.push(data.data);
+				queuelength++;
+				idqueue.push(count);
+				nodes.add([{id: count, label: data.data.tag}]);
+				count++;
+				var currentid = 1;
+
+				while(queuelength != 0){
+					var current = queue.shift();
+					queuelength--;
+					var id = idqueue.shift();
+
+					if(current.content != null){
+						for(var i = 0; i < current.content.length; i++){
+							queue.push(current.content[i]);
+							queuelength++;
+							idqueue.push(count);
+							if(current.content[i].tag != null){
+								console.log(current.content[i].tag);
+								nodes.add([{id: count, label: current.content[i].tag}]);
+							}
+							else{
+								console.log(current.content[i]);
+								nodes.add([{id: count, label: current.content[i]}]);
+							}
+							edges.add([{from: id, to: count}]);
+							count++;
 						}
 					}
-				},
-				edges:{
-					smooth: false
+					else if(current.tag != null){
+						
+						queue.push("\u03B5");
+						queuelength++;
+						idqueue.push(count);
+						console.log("\u03B5");
+						nodes.add([{id: count, label: "\u03B5"}]);
+						edges.add([{from: id, to: count}]);
+						count++;
+
+					}
 				}
-			};
 
-			// initialize your network!
-			var network = new vis.Network(container, datum, options);
-			$("#tree").removeClass("loading");
+				console.log(count);
 
+				// create a network
+				var container = document.getElementById('tree');
+
+				// provide the data in the vis format
+				var datum = {
+					nodes: nodes,
+					edges: edges
+				};
+				var options = {
+					layout: {
+						hierarchical: {
+							sortMethod: 'directed',
+						}
+					},
+					physics:{
+						hierarchicalRepulsion: {
+							nodeDistance: 150
+						},
+						stabilization: {
+							iterations: 2500
+						}
+					},
+					interaction:{
+						dragNodes: false,
+						dragView: true,
+						zoomView: true,
+						navigationButtons: true,
+					},
+					nodes:{
+						color:{
+							background: '#8b9dc3',
+							border: '#637aad'
+						},
+						font:{
+							color: '#FFFFFF'
+						},
+						scaling:{
+							label:{
+								enabled: true
+							}
+						}
+					},
+					edges:{
+						smooth: true
+					}
+				};
+
+				// initialize your network!
+				var network = new vis.Network(container, datum, options);
+				$("#tree").removeClass("loading");
+
+			}
+			else{
+				//$("#tree").removeClass("loading");
+				$("#tree").addClass("error");
+				alert(data.message);
+			}
+
+		},
+
+		error: function(){
+			$("#tree").addClass("error");
+			alert("500 Error: Your grammar isn't really a grammar.");
 		}
 
 	});

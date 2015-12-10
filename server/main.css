@@ -22,6 +22,14 @@ html, body{
 				no-repeat;
 		}
 
+		.error{
+			background: rgba( 255, 255, 255, .5 ) 
+				url('/img/icons/error.png') 
+				50% 50% 
+				no-repeat;
+			background-size: 25px;
+		}
+
 		/*Courtesy of http://www.bestcssbuttongenerator.com*/
 		button {
 			white-space:nowrap;

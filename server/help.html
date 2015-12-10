@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="author" content="Adeeb Sheikh">
+
+	<title>
+		Template | iGG
+	</title>
+
+	<link rel="stylesheet" type="text/css" href="./main.css">
+
+	<link rel="shortcut icon" href="./img/icons/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="./img/icons/favicon.ico" type="image/x-icon">
+
+	<script src="http://code.jquery.com/jquery-1.11.3.min.js">
+	</script>
+
+	<script type="text/javascript">
+
+		$(document).ready(function(){
+
+			$.ajax({
+
+				url: "/cgi-bin/html-banner.py",
+
+				data: {
+				},
+
+				type: "GET",
+
+				dataType: "html",
+
+				success: function(data){
+
+					$("div.banner").html(data);
+
+					$("#username").focus();
+
+				}
+
+			});
+
+		});
+	</script>
+
+	<script src="/js-bin/client-login-logout.js" type="text/javascript">
+	</script>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="banner">
+		</div>
+
+		<div class="mainpage">
+			<ul>
+				<ul>
+					<h1>
+						How do you format grammars for iGG?
+					</h1>
+					
+					<p>
+						It's a simple modification on Extended Backus-Naur Form! You simply do as follows:
+					</p>
+
+					<p>
+						&lt;Syntactic Group&gt; ::= 'Literal' &lt;Other Syntactic Group&gt; | eps ;
+					</p>
+
+					<p>
+						Keep in mind: the semicolon is used for end-of-line, not the newline.
+					</p>
+				</ul>
+
+				<br>
+
+				<ul>
+					<h1>
+						Credits
+					</h1>
+
+					<p>
+						Tree visualization is powered by vis.js.
+					</p>
+
+					<p>
+						Parsing is powered by a Clojure script written by Edward Newton.
+					</p>
+
+					<p>
+						This site was written and constructed using HTML, CSS, JavaScript, and Python, by Adeeb Sheikh
+					</p>
+		</div>
+	</div>
+	
+	<div class="footer" xmlns:dc="http://purl.org/dc/elements/1.1/">
+		<img src="img/icons/hr.png" style="vertical-align:middle">
+		<p id="copyright" property="dc:rights">&copy;
+			<span property="dc:dateCopyrighted">2015</span>
+			<span property="dc:publisher">Adeeb Sheikh</span>
+		</p>
+	</div>
+
+</body>
+
+</html>

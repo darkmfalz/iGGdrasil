@@ -106,6 +106,13 @@ else:
 						<div class="logoutdiv">
 							<table class="logintable">
 								<tr>
+									<td>
+										<a href="/help">
+											<div class="banner-button">
+												<img src="/img/icons/help-circled-512-000000.png" />
+											</div>
+										</a>
+									</td>
 
 									<td>
 										<a href="/users/''' + username + '''">
