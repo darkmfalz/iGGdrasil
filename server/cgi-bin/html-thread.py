@@ -224,6 +224,7 @@ def viewThread():
 													</h2>
 												</a>
 											</td>
+										</tr>
 
 										<tr>
 											<td>
@@ -332,6 +333,18 @@ else:
 															<a href="/users/''' + username + '''" style='text-decoration:none;color:black;'>''' + username + '''</a>
 														</h2>
 													</td>
+
+													'''
+
+			if inusername == username:
+				print '''
+										<td style="vertical-align:top;">
+											<div class="remove-button" onclick="removeGrammar(''' + "'" + thread + "'" + ''', 1)">
+												<img src="/img/icons/error-black.png" />
+											</div>
+										</td>'''
+
+			print '''
 												</tr>
 
 												<tr>
@@ -399,6 +412,18 @@ else:
 														</h2>
 													</a>
 												</td>
+												'''
+
+				if inusername == username:
+					print '''
+											<td style="vertical-align:top;">
+												<div class="remove-button" onclick="removeComment(''' + "'" + parent + "'" + ''', 1)">
+													<!-- <img src="/img/icons/error-black.png" /> -->
+												</div>
+											</td>'''
+
+				print '''
+											</tr>
 
 											<tr>
 												<td>

@@ -285,6 +285,7 @@ def viewThread():
 													</h2>
 												</a>
 											</td>
+										</tr>
 
 										<tr>
 											<td>
@@ -425,6 +426,9 @@ else:
 
 					<script src="/js-bin/client-tree.js" type="text/javascript">
 					</script>
+
+					<script src="/js-bin/client-remove.js" type="text/javascript">
+					</script>
 				</head>
 
 				<body>
@@ -469,7 +473,17 @@ else:
 														<h2>
 															<a href="/users/''' + username + '''" style='text-decoration:none;color:black;'>''' + username + '''</a>
 														</h2>
-													</td>
+													</td>'''
+
+			if inusername == username:
+				print '''
+										<td style="vertical-align:top;">
+											<div class="remove-button" onclick="removeGrammar(''' + "'" + thread + "'" + ''', 1)">
+												<img src="/img/icons/error-black.png" />
+											</div>
+										</td>'''
+
+			print '''
 												</tr>
 
 												<tr>
@@ -536,7 +550,19 @@ else:
 															''' + username + '''
 														</h2>
 													</a>
+												</td>'''
+
+					if inusername == username:
+						print '''
+												<td style="vertical-align:top;">
+													<div class="remove-button" onclick="removeComment(''' + "'" + parent + "'" + ''', 1)">
+														<!-- <img src="/img/icons/error-black.png" /> -->
+													</div>
 												</td>
+											'''
+
+					print '''
+											</tr>
 
 											<tr>
 												<td>

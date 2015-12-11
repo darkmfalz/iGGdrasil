@@ -16,7 +16,7 @@ c = conn.cursor()
 conn2 = sqlite3.connect('users.db')
 c2 = conn.cursor()
 
-def printThread(r):
+def printThread(r, username):
 	image = ""
 
 	for a in c2.execute('select * from accounts where username=?', [r[1]]):
@@ -48,6 +48,18 @@ def printThread(r):
 					<a href="/users/''' + r[1].decode('hex') + '''" style='text-decoration:none;color:black;'>''' + r[1].decode('hex') + '''</a>
 				</h2>
 			</td>
+
+			'''
+
+	if username == r[1].decode('hex'):
+		print '''
+								<td style="vertical-align:top;">
+									<div class="remove-button" onclick="removeGrammar(''' + "'" + r[0] + "'" + ''')">
+										<img src="/img/icons/error-black.png" />
+									</div>
+								</td>'''
+
+	print '''
 		</tr>
 
 		<tr>
@@ -69,6 +81,20 @@ def printThread(r):
 		</tr>
 	</table>'''
 
+username = ""
+#Checks if there's a cookie already
+stored_cookie_string = os.environ.get('HTTP_COOKIE')
+#If not, it's a bad login!
+if not stored_cookie_string:
+	pass
+#Otherwise, check the cookie
+else:
+	cookie = Cookie.SimpleCookie(stored_cookie_string)
+	#If the cookie is 'username'
+	if 'username' in cookie:
+		for d in c.execute('select * from loggedin where sessionid=?', [cookie['username'].value]):
+			username = d[1].decode('hex')
+
 print 'Content-Type: text/html'
 print
 
@@ -76,7 +102,7 @@ print "<table class='threadnm'>"
 
 for r in c.execute('select * from grammars order by created desc'):
 	print "<tr><td>"
-	printThread(r)
+	printThread(r, username)
 	print "</td></tr>"
 
 print "</table>"

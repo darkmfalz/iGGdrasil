@@ -197,6 +197,15 @@ html, body{
 					padding: 5px;
 				}
 
+			.thread-user{
+				border-collapse: separate;
+				padding-bottom: 15px;
+			}
+
+				.thread-user td{
+					padding: 5px;
+				}
+
 			.threadnm{
 				border-collapse: separate;
 				padding-bottom: 15px;
@@ -218,6 +227,20 @@ html, body{
 
 					.post-block tr{
 						padding: 10px;
+					}
+
+					.remove-button{
+						width: 10px;
+						opacity: .4;
+					}
+
+						.remove-button img{
+							width: 10px;
+						}
+
+					.remove-button:hover{
+						width: 10px;
+						opacity: 1.0;
 					}
 
 			.profile{

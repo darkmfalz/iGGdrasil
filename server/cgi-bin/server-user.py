@@ -75,6 +75,9 @@ def redirect():
 
 		<script src="/js-bin/client-login-logout.js" type="text/javascript">
 		</script>
+
+		script src="/js-bin/client-remove.js" type="text/javascript">
+		</script>
 	</head>
 
 	<body>
@@ -214,7 +217,7 @@ def viewProfile():
 								</td>
 
 								<td>
-									<table class="profile-block">'''
+									<table>'''
 
 		gnexist = True
 
@@ -274,7 +277,7 @@ def viewProfile():
 		</td>
 
 		<td>
-			<table class="profile-block">'''
+			<table>'''
 
 		cnexist = True
 
@@ -530,7 +533,7 @@ else:
 								</td>
 
 								<td>
-									<table class="profile-block">'''
+									<table class="thread-user" id="thread-grammars">'''
 
 			gnexist = True
 
@@ -562,6 +565,12 @@ else:
 								<a href="/users/''' + r[1].decode('hex') + '''" style='text-decoration:none;color:black;'>''' + r[1].decode('hex') + '''</a>
 							</h2>
 						</td>
+
+						<td style="vertical-align:top;">
+							<div class="remove-button" onclick="removeGrammar(''' + "'" + r[0] + "'" + ''', 2)">
+								<!-- <img src="/img/icons/error-black.png" /> -->
+							</div>
+						</td>
 					</tr>
 
 					<tr>
@@ -590,7 +599,7 @@ else:
 			</td>
 
 			<td>
-				<table class="profile-block">'''
+				<table class="thread-user" id="thread-comments">'''
 
 			cnexist = True
 
@@ -615,6 +624,12 @@ else:
 									''' + threadtitle + '''
 								</h3>
 							</a>
+						</td>
+
+						<td style="vertical-align:top;">
+							<div class="remove-button" onclick="removeComment(''' + "'" + r[0] + "'" + ''', 2)">
+								<!-- <img src="/img/icons/error-black.png" /> -->
+							</div>
 						</td>
 					</tr>
 
