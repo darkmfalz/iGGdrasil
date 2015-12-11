@@ -32,7 +32,7 @@ for r in c.execute('select * from grammars'):
 #<DL> ::= <D> | <D> <DL> ;
 #<D> ::= '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' ;'''
 
-command = 'java -jar cfgtojson-0.1.2-SNAPSHOT-standalone.jar "' + grammar + '"'
+command = 'java -jar cfgtojson-0.1.3-SNAPSHOT-standalone.jar "' + grammar + '"'
 
 #print command
 

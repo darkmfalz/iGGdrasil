@@ -54,7 +54,7 @@ def printThread(r, username):
 	if username == r[1].decode('hex'):
 		print '''
 								<td style="vertical-align:top;">
-									<div class="remove-button" onclick="removeGrammar(''' + "'" + r[0] + "'" + ''')">
+									<div class="remove-button" onclick="removeGrammar(''' + "'" + r[0] + "'" + ''', 0)">
 										<img src="/img/icons/error-black.png" />
 									</div>
 								</td>'''
