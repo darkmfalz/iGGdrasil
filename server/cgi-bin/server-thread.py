@@ -193,7 +193,7 @@ def viewThread():
 					</form>
 
 					<div class="mainpage">
-						<table class="thread">
+						<table>
 							<tr>
 								<td>
 									<div id="parent">
@@ -550,18 +550,7 @@ else:
 															''' + username + '''
 														</h2>
 													</a>
-												</td>'''
-
-					if inusername == username:
-						print '''
-												<td style="vertical-align:top;">
-													<div class="remove-button" onclick="removeComment(''' + "'" + parent + "'" + ''', 1)">
-														<!-- <img src="/img/icons/error-black.png" /> -->
-													</div>
 												</td>
-											'''
-
-					print '''
 											</tr>
 
 											<tr>

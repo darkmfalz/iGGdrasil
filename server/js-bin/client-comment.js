@@ -40,7 +40,7 @@ $(document).on('submit', '#createnewcomment', function(e){
 
 				success: function(data){
 
-					console.log('hi');
+					console.log(data);
 					$(".mainpage").html(data);
 
 				}

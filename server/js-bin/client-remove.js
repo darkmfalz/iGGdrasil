@@ -96,7 +96,7 @@ function removeComment(ithread, page){
 
 					if(page == 1){
 
-						$(".thread").html(data);
+						$(".mainpage").html(data);
 						
 					}
 					else if(page == 2){

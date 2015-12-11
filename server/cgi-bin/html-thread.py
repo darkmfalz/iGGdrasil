@@ -132,7 +132,7 @@ def viewThread():
 		print
 
 		print '''
-						<table class="thread">
+						<table>
 							<tr>
 								<td>
 									<div id="parent">
@@ -332,9 +332,7 @@ else:
 														<h2>
 															<a href="/users/''' + username + '''" style='text-decoration:none;color:black;'>''' + username + '''</a>
 														</h2>
-													</td>
-
-													'''
+													</td>'''
 
 			if inusername == username:
 				print '''
@@ -412,17 +410,6 @@ else:
 														</h2>
 													</a>
 												</td>
-												'''
-
-				if inusername == username:
-					print '''
-											<td style="vertical-align:top;">
-												<div class="remove-button" onclick="removeComment(''' + "'" + parent + "'" + ''', 1)">
-													<!-- <img src="/img/icons/error-black.png" /> -->
-												</div>
-											</td>'''
-
-				print '''
 											</tr>
 
 											<tr>
